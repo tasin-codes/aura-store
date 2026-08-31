@@ -1,3 +1,53 @@
+// EmailJS ইনিশিয়ালাইজেশন
+(function() {
+    // EmailJS অ্যাকাউন্ট থেকে পাওয়া Public Key এখানে দিন
+    emailjs.init("YOUR_PUBLIC_KEY"); 
+})();
+
+// ইমেইল পাঠানোর মূল ফাংশন
+function sendOrderEmail(orderDetails) {
+    const templateParams = {
+        to_email: "tasinbinazam@gmail.com",
+        customer_name: orderDetails.name || "N/A",
+        customer_phone: orderDetails.phone || "N/A",
+        customer_address: orderDetails.address || "N/A",
+        total_amount: orderDetails.totalAmount || "0",
+        order_items: orderDetails.items || "No items"
+    };
+
+    // EmailJS সার্ভিস দিয়ে ইমেইল সেন্ড করা
+    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+        .then(function(response) {
+            console.log('Order successfully sent to tasinbinazam@gmail.com!', response.status, response.text);
+            alert('আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে!');
+        }, function(error) {
+            console.log('Failed to send email...', error);
+            alert('ইমেইল পাঠাতে সমস্যা হয়েছে, আবার চেষ্টা করুন।');
+        });
+}
+
+// চেকআউট ফর্ম সাবমিট ইভেন্ট
+document.addEventListener('DOMContentLoaded', function() {
+    const checkoutForm = document.querySelector('#checkout-form'); // আপনার ফর্মের ID দিয়ে পরিবর্তন করতে পারেন
+    
+    if (checkoutForm) {
+        checkoutForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // ফর্মের ফিল্ড থেকে তথ্য সংগ্রহ
+            const orderData = {
+                name: document.querySelector('#customer-name')?.value,
+                phone: document.querySelector('#customer-phone')?.value,
+                address: document.querySelector('#customer-address')?.value,
+                totalAmount: document.querySelector('#total-price')?.innerText,
+                items: "পণ্যের নাম ও বিবরণ" // এখানে শপিং কার্টের আইটেমগুলো যুক্ত করতে পারেন
+            };
+
+            // ইমেইল পাঠানোর ফাংশন কল
+            sendOrderEmail(orderData);
+        });
+    }
+});
 /* ==========================================================================
    BUSINESS CONFIGURATION (Edit details here)
    ========================================================================== */
