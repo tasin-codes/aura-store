@@ -1,92 +1,14 @@
-function handleCheckoutSubmit(e) {
-    e.preventDefault();
-
-    if (cart.length === 0) {
-        alert("Your cart is empty.");
-        return;
-    }
-
-    const orderData = {
-        orderId: 'ORD-' + Math.floor(100000 + Math.random() * 900000),
-
-        name: document.getElementById('cust-name').value.trim(),
-        phone: document.getElementById('cust-phone').value.trim(),
-        email: document.getElementById('cust-email').value.trim(),
-        address: document.getElementById('cust-address').value.trim(),
-        city: document.getElementById('cust-city').value.trim(),
-        area: deliveryAreaSelect.value,
-        notes: document.getElementById('cust-notes').value.trim(),
-
-        items: [...cart],
-        subtotal: calculateSubtotal(),
-        deliveryCharge: getDeliveryCharge(),
-        total: calculateSubtotal() + getDeliveryCharge()
-    };
-
-    // Cart items → readable email text
-    const orderItems = orderData.items.map((item, index) => {
-        return `${index + 1}. ${item.name} x${item.quantity} = ${BUSINESS_CONFIG.currency}${item.price * item.quantity}`;
-    }).join('\n');
-
-    // EmailJS template data
-    const templateParams = {
-        order_id: orderData.orderId,
-        customer_name: orderData.name,
-        phone: orderData.phone,
-        email: orderData.email,
-        address: `${orderData.address}, ${orderData.city}`,
-        product: orderItems,
-        quantity: orderData.items.reduce(
-            (sum, item) => sum + item.quantity,
-            0
-        ),
-        total: `${BUSINESS_CONFIG.currency}${orderData.total}`,
-        payment_method: "Cash on Delivery",
-        notes: orderData.notes
-    };
-
-    console.log("Sending order:", templateParams);
-
-    emailjs.send(
-        "service_xpo9pt9",
-        "template_f9swdxh",
-        templateParams
-    )
-    .then(function(response) {
-
-        console.log(
-            "Order email sent successfully!",
-            response.status,
-            response.text
-        );
-
-        showOrderConfirmation(orderData);
-
-        clearCart();
-
-        closeCheckout();
-
-    })
-    .catch(function(error) {
-
-        console.error("EmailJS Error:", error);
-
-        alert(
-            "Order could not be submitted. Please try again."
-        );
-    });
-}
 /* ==========================================================================
-   BUSINESS CONFIGURATION (Edit details here)
+   BUSINESS CONFIGURATION
    ========================================================================== */
 const BUSINESS_CONFIG = {
     businessName: "AURA STORE",
-    whatsappNumber: "8801700000000", // Format: country code without + sign (e.g. 8801700000000)
+    whatsappNumber: "8801700000000",
     currency: "৳",
     deliveryChargeInside: 80,
     deliveryChargeOutside: 150,
     phone: "+880 1700-000000",
-    email: "support@aurastore.com",
+    email: "tasinbinazam@gmail.com",
     address: "Gulshan Avenue, Block NW-2, Dhaka"
 };
 
@@ -272,7 +194,6 @@ function applyBusinessConfig() {
     document.getElementById('contact-email-display').textContent = BUSINESS_CONFIG.email;
     document.getElementById('contact-address-display').textContent = BUSINESS_CONFIG.address;
 
-    // Set currency symbols across static UI
     document.querySelectorAll('.currency-symbol').forEach(el => {
         el.textContent = BUSINESS_CONFIG.currency;
     });
@@ -375,7 +296,7 @@ function filterAndSortProducts() {
 }
 
 /* ==========================================================================
-   CART OPERATIONS & LOCALSTORAGE
+   CART OPERATIONS
    ========================================================================== */
 function addToCart(productId, quantity = 1) {
     const product = products.find(p => p.id === productId);
@@ -472,7 +393,6 @@ function updateCartUI() {
     cartDeliveryEl.textContent = `${BUSINESS_CONFIG.currency}${delivery}`;
     cartTotalEl.textContent = `${BUSINESS_CONFIG.currency}${total}`;
 
-    // Update checkout summary values
     checkoutSubtotalEl.textContent = `${BUSINESS_CONFIG.currency}${subtotal}`;
     checkoutDeliveryEl.textContent = `${BUSINESS_CONFIG.currency}${delivery}`;
     checkoutTotalEl.textContent = `${BUSINESS_CONFIG.currency}${total}`;
@@ -497,7 +417,7 @@ function toggleWishlist(productId) {
     }
     localStorage.setItem('aura_wishlist', JSON.stringify(wishlist));
     updateWishlistUI();
-    filterAndSortProducts(); // Re-render to update heart icon colors
+    filterAndSortProducts();
 }
 
 function updateWishlistUI() {
@@ -580,7 +500,7 @@ function closeProductModal() {
 }
 
 /* ==========================================================================
-   CHECKOUT & ORDER SYSTEM
+   CHECKOUT & EMAILJS SYSTEM
    ========================================================================== */
 function openCheckout() {
     if (cart.length === 0) {
@@ -598,31 +518,62 @@ function closeCheckout() {
     checkoutOverlay.classList.remove('active');
 }
 
-function openCheckout() {
-    ...
-}
-
-function closeCheckout() {
-    ...
-}
-
-
-// ================================
-// EMAILJS ORDER SUBMISSION
-// ================================
-
 function handleCheckoutSubmit(e) {
-    // EmailJS wala code ekhane
-}
+    e.preventDefault();
 
+    if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+    }
 
-function generateWhatsAppMessage() {
-    ...
-}
+    const orderData = {
+        orderId: 'ORD-' + Math.floor(100000 + Math.random() * 900000),
+        name: document.getElementById('cust-name').value.trim(),
+        phone: document.getElementById('cust-phone').value.trim(),
+        email: document.getElementById('cust-email').value.trim(),
+        address: document.getElementById('cust-address').value.trim(),
+        city: document.getElementById('cust-city').value.trim(),
+        area: deliveryAreaSelect.value,
+        notes: document.getElementById('cust-notes').value.trim(),
+        items: [...cart],
+        subtotal: calculateSubtotal(),
+        deliveryCharge: getDeliveryCharge(),
+        total: calculateSubtotal() + getDeliveryCharge()
+    };
 
-    showOrderConfirmation(orderData);
-    clearCart();
-    closeCheckout();
+    // কার্টের আইটেমগুলোকে টেক্সট ফরম্যাটে রূপান্তর
+    const orderItemsText = orderData.items.map((item, index) => {
+        return `${index + 1}. ${item.name} x${item.quantity} = ${BUSINESS_CONFIG.currency}${item.price * item.quantity}`;
+    }).join('\n');
+
+    const totalQuantity = orderData.items.reduce((sum, item) => sum + item.quantity, 0);
+
+    // EmailJS টেমপ্লেটে ডাটা প্রেরণ
+    const templateParams = {
+        order_id: orderData.orderId,
+        customer_name: orderData.name,
+        phone: orderData.phone,
+        email: orderData.email,
+        address: `${orderData.address}, ${orderData.city}`,
+        product: orderItemsText,
+        quantity: totalQuantity,
+        total: `${BUSINESS_CONFIG.currency}${orderData.total}`,
+        payment_method: "Cash on Delivery",
+        notes: orderData.notes || "N/A"
+    };
+
+    // EmailJS দিয়ে ইমেইল সেন্ড
+    emailjs.send("service_xpo9pt9", "template_f9swdxh", templateParams)
+        .then(function(response) {
+            console.log("Order email sent successfully!", response.status, response.text);
+            showOrderConfirmation(orderData);
+            clearCart();
+            closeCheckout();
+        })
+        .catch(function(error) {
+            console.error("EmailJS Error:", error);
+            alert("Order submission failed. Please try again.");
+        });
 }
 
 function generateWhatsAppMessage() {
@@ -674,7 +625,7 @@ function showOrderConfirmation(order) {
         <ul style="margin-left: 1.25rem; margin-bottom: 0.75rem;">
             ${order.items.map(item => `<li>${item.name} x ${item.quantity} (${BUSINESS_CONFIG.currency}${item.price * item.quantity})</li>`).join('')}
         </ul>
-        <p style="font-size: 1rem; font-weight: 800; color: var(--primary-color);">Total Paid/Payable: ${BUSINESS_CONFIG.currency}${order.total}</p>
+        <p style="font-size: 1rem; font-weight: 800; color: var(--primary-color);">Total Payable: ${BUSINESS_CONFIG.currency}${order.total}</p>
     `;
 
     confirmationModal.classList.add('active');
@@ -709,7 +660,6 @@ function showToast(message) {
 }
 
 function setupEventListeners() {
-    // Search & Filter Listeners
     searchInput.addEventListener('input', filterAndSortProducts);
     categorySelect.addEventListener('change', filterAndSortProducts);
     sortSelect.addEventListener('change', filterAndSortProducts);
@@ -720,33 +670,27 @@ function setupEventListeners() {
         filterAndSortProducts();
     });
 
-    // Cart Drawer Listeners
     cartToggleBtn.addEventListener('click', openCartDrawer);
     cartCloseBtn.addEventListener('click', closeCartDrawer);
     cartOverlay.addEventListener('click', closeCartDrawer);
     continueShoppingBtn.addEventListener('click', closeCartDrawer);
     openCheckoutBtn.addEventListener('click', openCheckout);
 
-    // Delivery Area Selection Listener
     deliveryAreaSelect.addEventListener('change', updateCartUI);
 
-    // Modal Close Listeners
     modalCloseBtn.addEventListener('click', closeProductModal);
     productModalOverlay.addEventListener('click', closeProductModal);
     checkoutCloseBtn.addEventListener('click', closeCheckout);
     checkoutOverlay.addEventListener('click', closeCheckout);
 
-    // Checkout Submit
     checkoutForm.addEventListener('submit', handleCheckoutSubmit);
     whatsappOrderBtn.addEventListener('click', generateWhatsAppMessage);
 
-    // Confirmation Close
     backToShopBtn.addEventListener('click', () => {
         confirmationModal.classList.remove('active');
         confirmationOverlay.classList.remove('active');
     });
 
-    // Mobile Navigation Drawer
     hamburgerBtn.addEventListener('click', () => {
         mobileNavDrawer.classList.add('active');
         mobileNavOverlay.classList.add('active');
