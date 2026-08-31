@@ -1,4 +1,3 @@
-
 function handleCheckoutSubmit(e) {
     e.preventDefault();
 
@@ -9,6 +8,7 @@ function handleCheckoutSubmit(e) {
 
     const orderData = {
         orderId: 'ORD-' + Math.floor(100000 + Math.random() * 900000),
+
         name: document.getElementById('cust-name').value.trim(),
         phone: document.getElementById('cust-phone').value.trim(),
         email: document.getElementById('cust-email').value.trim(),
@@ -23,24 +23,30 @@ function handleCheckoutSubmit(e) {
         total: calculateSubtotal() + getDeliveryCharge()
     };
 
-    // Convert cart items into readable text
+    // Cart items → readable email text
     const orderItems = orderData.items.map((item, index) => {
         return `${index + 1}. ${item.name} x${item.quantity} = ${BUSINESS_CONFIG.currency}${item.price * item.quantity}`;
     }).join('\n');
 
-    // EmailJS data
+    // EmailJS template data
     const templateParams = {
         order_id: orderData.orderId,
         customer_name: orderData.name,
         phone: orderData.phone,
+        email: orderData.email,
         address: `${orderData.address}, ${orderData.city}`,
         product: orderItems,
-        quantity: orderData.items.reduce((sum, item) => sum + item.quantity, 0),
+        quantity: orderData.items.reduce(
+            (sum, item) => sum + item.quantity,
+            0
+        ),
         total: `${BUSINESS_CONFIG.currency}${orderData.total}`,
-        payment_method: "Cash on Delivery"
+        payment_method: "Cash on Delivery",
+        notes: orderData.notes
     };
 
-    // Send email through EmailJS
+    console.log("Sending order:", templateParams);
+
     emailjs.send(
         "service_xpo9pt9",
         "template_f9swdxh",
@@ -54,13 +60,10 @@ function handleCheckoutSubmit(e) {
             response.text
         );
 
-        // Email successfully sent
         showOrderConfirmation(orderData);
 
-        // Empty cart
         clearCart();
 
-        // Close checkout
         closeCheckout();
 
     })
@@ -68,7 +71,9 @@ function handleCheckoutSubmit(e) {
 
         console.error("EmailJS Error:", error);
 
-        alert("Order could not be submitted. Please try again.");
+        alert(
+            "Order could not be submitted. Please try again."
+        );
     });
 }
 /* ==========================================================================
@@ -593,23 +598,27 @@ function closeCheckout() {
     checkoutOverlay.classList.remove('active');
 }
 
-function handleCheckoutSubmit(e) {
-    e.preventDefault();
+function openCheckout() {
+    ...
+}
 
-    const orderData = {
-        orderId: 'ORD-' + Math.floor(100000 + Math.random() * 900000),
-        name: document.getElementById('cust-name').value,
-        phone: document.getElementById('cust-phone').value,
-        email: document.getElementById('cust-email').value,
-        address: document.getElementById('cust-address').value,
-        city: document.getElementById('cust-city').value,
-        area: deliveryAreaSelect.value,
-        notes: document.getElementById('cust-notes').value,
-        items: [...cart],
-        subtotal: calculateSubtotal(),
-        deliveryCharge: getDeliveryCharge(),
-        total: calculateSubtotal() + getDeliveryCharge()
-    };
+function closeCheckout() {
+    ...
+}
+
+
+// ================================
+// EMAILJS ORDER SUBMISSION
+// ================================
+
+function handleCheckoutSubmit(e) {
+    // EmailJS wala code ekhane
+}
+
+
+function generateWhatsAppMessage() {
+    ...
+}
 
     showOrderConfirmation(orderData);
     clearCart();
