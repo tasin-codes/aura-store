@@ -1,1 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store | Premium E-Commerce</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <p>Free delivery on orders over <span class="currency-symbol">৳</span>2000! Use code <strong>ELEGANCE</strong></p>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="#" class="brand-logo" id="brand-logo-text">AURA STORE</a>
+
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#hero" class="nav-link active">Home</a>
+                <a href="#shop" class="nav-link">Shop</a>
+                <a href="#about" class="nav-link">About Us</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="icon-btn" id="wishlist-btn" aria-label="Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="badge" id="wishlist-count">0</span>
+                </button>
+                <button class="icon-btn" id="cart-toggle-btn" aria-label="Shopping Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="badge" id="cart-count">0</span>
+                </button>
+                <button class="hamburger" id="hamburger-btn" aria-label="Toggle Navigation Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <aside class="mobile-nav-drawer" id="mobile-nav-drawer">
+        <div class="mobile-nav-header">
+            <span class="brand-logo" id="mobile-brand-logo">AURA STORE</span>
+            <button class="close-btn" id="mobile-nav-close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="#hero" class="mobile-link">Home</a></li>
+            <li><a href="#shop" class="mobile-link">Shop</a></li>
+            <li><a href="#about" class="mobile-link">About Us</a></li>
+            <li><a href="#contact" class="mobile-link">Contact</a></li>
+        </ul>
+    </aside>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="hero-tag">NEW COLLECTION 2026</span>
+                <h1 class="hero-title">Elevate Your Everyday Essentials</h1>
+                <p class="hero-description">Discover meticulously crafted minimalist products designed for modern life. Sustainable, elegant, and timeless designs for everyday sophistication.</p>
+                <div class="hero-buttons">
+                    <a href="#shop" class="btn btn-primary">Shop Collection <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#about" class="btn btn-outline">Our Story</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=80" alt="Hero Featured Product" class="hero-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Shop Section -->
+    <section class="shop-section" id="shop">
+        <div class="container">
+            <div class="section-header">
+                <h2>Explore Collection</h2>
+                <p>Handpicked premium essentials curated just for you.</p>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="shop-controls">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Search products by name or tag...">
+                </div>
+
+                <div class="filters-wrapper">
+                    <div class="filter-group">
+                        <label for="category-select">Category:</label>
+                        <select id="category-select" class="custom-select">
+                            <option value="all">All Categories</option>
+                            <!-- Dynamic Categories -->
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="sort-select">Sort By:</label>
+                        <select id="sort-select" class="custom-select">
+                            <option value="default">Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="name-asc">Alphabetical: A-Z</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="products-grid" id="products-grid">
+                <!-- Products injected via JS -->
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-products hidden" id="empty-products">
+                <i class="fa-solid fa-box-open"></i>
+                <h3>No products found</h3>
+                <p>Try adjusting your search query or clear filters to see more items.</p>
+                <button class="btn btn-secondary" id="reset-filters-btn">Reset All Filters</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container about-container">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80" alt="About Our Workshop">
+            </div>
+            <div class="about-content">
+                <span class="sub-heading">Craftsmanship & Quality</span>
+                <h2>Dedicated to Timeless Elegance</h2>
+                <p>We started our small boutique with a simple vision: to bring well-crafted, high-quality products directly to our community without unnecessary markup. Each item in our store is hand-picked and checked for durability, quality, and design excellence.</p>
+                <p>We believe in sustainable choices, ethical production, and providing unmatched customer experiences. Thank you for supporting our independent journey!</p>
+                <div class="stat-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Authentic</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5k+</span>
+                        <span class="stat-label">Happy Clients</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Fast Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>Have questions about products, shipping, or returns? We're here to help.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="icon-wrapper"><i class="fa-solid fa-phone"></i></div>
+                    <h3>Phone & Direct</h3>
+                    <p id="contact-phone-display">+880 1700-000000</p>
+                    <small>Mon-Fri, 9am - 8pm</small>
+                </div>
+                <div class="contact-card">
+                    <div class="icon-wrapper"><i class="fa-solid fa-envelope"></i></div>
+                    <h3>Email Us</h3>
+                    <p id="contact-email-display">support@aurastore.com</p>
+                    <small>Response within 24 hours</small>
+                </div>
+                <div class="contact-card">
+                    <div class="icon-wrapper"><i class="fa-solid fa-location-dot"></i></div>
+                    <h3>Our Address</h3>
+                    <p id="contact-address-display">Gulshan Avenue, Block NW-2, Dhaka</p>
+                    <small>Showroom & Pickup Point</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <h3 id="footer-brand-name">AURA STORE</h3>
+                <p>Crafting high quality lifestyle products for everyday utility and timeless elegance.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links-group">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#shop">Shop All</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links-group">
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Returns & Exchanges</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-newsletter">
+                <h4>Newsletter</h4>
+                <p>Subscribe for updates and exclusive discount drops.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-primary">Join</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; <span id="copyright-year">2026</span> <span id="copyright-name">Aura Store</span>. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Side Drawer -->
+    <div class="modal-overlay" id="cart-overlay"></div>
+    <aside class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3>Shopping Bag (<span id="cart-drawer-count">0</span>)</h3>
+            <button class="close-btn" id="cart-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="cart-body" id="cart-items-container">
+            <!-- Dynamic Cart Items -->
+        </div>
+
+        <div class="cart-footer">
+            <div class="summary-line">
+                <span>Subtotal</span>
+                <span id="cart-subtotal"><span class="currency-symbol">৳</span>0.00</span>
+            </div>
+            <div class="summary-line">
+                <span>Delivery Charge</span>
+                <span id="cart-delivery"><span class="currency-symbol">৳</span>0.00</span>
+            </div>
+            <div class="summary-line grand-total">
+                <span>Grand Total</span>
+                <span id="cart-total"><span class="currency-symbol">৳</span>0.00</span>
+            </div>
+            
+            <div class="cart-actions">
+                <button class="btn btn-secondary btn-full" id="continue-shopping-btn">Continue Shopping</button>
+                <button class="btn btn-primary btn-full" id="open-checkout-btn">Proceed to Checkout <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Product Details Modal -->
+    <div class="modal-overlay" id="product-modal-overlay"></div>
+    <div class="product-modal" id="product-modal">
+        <button class="modal-close-btn" id="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-body" id="modal-content">
+            <!-- Dynamic Product Content -->
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkout-overlay"></div>
+    <div class="checkout-modal" id="checkout-modal">
+        <div class="checkout-header">
+            <h2>Complete Your Order</h2>
+            <button class="modal-close-btn" id="checkout-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="checkout-body">
+            <form id="checkout-form" class="checkout-form">
+                <div class="form-section">
+                    <h3>1. Shipping Details</h3>
+                    <div class="form-group">
+                        <label for="cust-name">Full Name *</label>
+                        <input type="text" id="cust-name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cust-phone">Phone Number *</label>
+                            <input type="tel" id="cust-phone" placeholder="01700000000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cust-email">Email Address *</label>
+                            <input type="email" id="cust-email" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cust-address">Street Address *</label>
+                        <input type="text" id="cust-address" placeholder="House no, road, area" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cust-city">City *</label>
+                            <input type="text" id="cust-city" placeholder="Dhaka" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cust-area">Delivery Zone *</label>
+                            <select id="cust-area" class="custom-select" required>
+                                <option value="inside">Inside City (Standard Delivery)</option>
+                                <option value="outside">Outside City (Express Courier)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cust-notes">Order Notes (Optional)</label>
+                        <textarea id="cust-notes" rows="2" placeholder="Special delivery instructions..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>2. Payment Method</h3>
+                    <div class="payment-option">
+                        <input type="radio" id="cod" name="payment" value="COD" checked>
+                        <label for="cod">
+                            <strong>Cash on Delivery (COD)</strong>
+                            <small>Pay with cash directly upon parcel arrival.</small>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="checkout-summary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-line">
+                        <span>Items Subtotal</span>
+                        <span id="checkout-subtotal">৳0.00</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Delivery Fee</span>
+                        <span id="checkout-delivery">৳0.00</span>
+                    </div>
+                    <div class="summary-line grand-total">
+                        <span>Total Payable</span>
+                        <span id="checkout-total">৳0.00</span>
+                    </div>
+                </div>
+
+                <div class="checkout-buttons">
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fa-solid fa-check"></i> Place Order (Cash on Delivery)
+                    </button>
+                    <button type="button" class="btn btn-whatsapp btn-full" id="whatsapp-order-btn">
+                        <i class="fa-brands fa-whatsapp"></i> Order via WhatsApp Instant
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order Confirmation Modal -->
+    <div class="modal-overlay" id="confirmation-overlay"></div>
+    <div class="confirmation-modal" id="confirmation-modal">
+        <div class="confirmation-content">
+            <div class="success-icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h2>Order Confirmed!</h2>
+            <p class="confirmation-subtitle">Thank you for your purchase. We have received your order.</p>
+
+            <div class="order-details-card" id="confirmation-details">
+                <!-- Injected via JS -->
+            </div>
+
+            <button class="btn btn-primary btn-full" id="back-to-shop-btn">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-circle-info toast-icon" id="toast-icon"></i>
+        <span id="toast-message">Item added to cart!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
