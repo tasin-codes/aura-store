@@ -11,12 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-  emailjs.init({
-    publicKey: "z_JJJpmBJ5bNZMeRA"
-  });
-</script>
+ 
 </head>
 <body>
 
@@ -395,13 +390,23 @@
             <button class="btn btn-primary btn-full" id="back-to-shop-btn">Continue Shopping</button>
         </div>
     </div>
+<!-- Toast Notification -->
+<div class="toast" id="toast">
+    <i class="fa-solid fa-circle-info toast-icon" id="toast-icon"></i>
+    <span id="toast-message">Item added to cart!</span>
+</div>
 
-    <!-- Toast Notification -->
-    <div class="toast" id="toast">
-        <i class="fa-solid fa-circle-info toast-icon" id="toast-icon"></i>
-        <span id="toast-message">Item added to cart!</span>
-    </div>
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-    <script src="script.js"></script>
+<script>
+    emailjs.init({
+        publicKey: "z_JJJpmBJ5bNZMeRA"
+    });
+</script>
+
+<!-- Your JavaScript -->
+<script src="script.js"></script>
+
 </body>
 </html>
