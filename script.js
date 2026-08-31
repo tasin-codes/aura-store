@@ -1,9 +1,3 @@
-// EmailJS Initialization
-(function () {
-    emailjs.init({
-        publicKey: "z_JJJpmBJ5bNZMeRA"
-    });
-})();
 
 function handleCheckoutSubmit(e) {
     e.preventDefault();
