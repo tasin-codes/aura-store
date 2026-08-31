@@ -1,1 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Manager - Admin Panel</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; background: #f4f6f8; padding: 20px; color: #333; margin: 0; }
+        .admin-container { max-width: 1100px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .admin-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 20px; }
+        @media (max-width: 768px) { .admin-grid { grid-template-columns: 1fr; } }
+        .form-box { background: #fafafa; padding: 20px; border-radius: 8px; border: 1px solid #e5e5e5; }
+        .form-box h3 { margin-top: 0; margin-bottom: 15px; }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 8px 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        .btn-action { width: 100%; padding: 10px; background: #111; color: #fff; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 10px; }
+        .btn-export { background: #10b981; }
+        .table-box { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+        th, td { border: 1px solid #eee; padding: 10px; text-align: left; }
+        th { background: #f8f9fa; }
+        .img-thumb { width: 45px; height: 45px; object-fit: cover; border-radius: 4px; }
+        .btn-sm { padding: 4px 8px; border: none; border-radius: 4px; cursor: pointer; font-size: 0.75rem; margin-right: 4px; }
+        .btn-edit { background: #f59e0b; color: white; }
+        .btn-del { background: #ef4444; color: white; }
+    </style>
+</head>
+<body>
 
+<div class="admin-container">
+    <div class="admin-header">
+        <h2>Aura Store - Product Admin Panel</h2>
+        <button class="btn-action btn-export" style="width: auto;" onclick="exportProductsFile()">📥 Export Updated products.js</button>
+    </div>
+
+    <div class="admin-grid">
+        <!-- Product Form -->
+        <div class="form-box">
+            <h3 id="form-title">Add New Product</h3>
+            <input type="hidden" id="p-id">
+            
+            <div class="form-group">
+                <label>Product Name *</label>
+                <input type="text" id="p-name" placeholder="Item Title">
+            </div>
+            <div class="form-group">
+                <label>Category *</label>
+                <input type="text" id="p-category" placeholder="Bags, Electronics, etc.">
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <div class="form-group" style="flex: 1;">
+                    <label>Price (৳) *</label>
+                    <input type="number" id="p-price" placeholder="2500">
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label>Old Price (৳)</label>
+                    <input type="number" id="p-old-price" placeholder="3000">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Image URL *</label>
+                <input type="text" id="p-image" placeholder="https://images.unsplash.com/...">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea id="p-desc" rows="3" placeholder="Product details..."></textarea>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <div class="form-group" style="flex: 1;">
+                    <label>Rating (1-5)</label>
+                    <input type="number" step="0.1" id="p-rating" value="4.5">
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label>Rating Count</label>
+                    <input type="number" id="p-rating-count" value="10">
+                </div>
+            </div>
+
+            <button class="btn-action" id="save-btn" onclick="saveProduct()">Add Product</button>
+            <button class="btn-action" style="background: #888; display: none;" id="cancel-btn" onclick="resetForm()">Cancel Edit</button>
+        </div>
+
+        <!-- Product Table -->
+        <div class="table-box">
+            <div style="margin-bottom: 10px;">
+                <input type="text" id="admin-search" placeholder="Search products by name or category..." oninput="renderAdminTable()" style="padding: 8px; width: 100%; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Img</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-table-body">
+                    <!-- Products rendered via JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Load Products Source -->
+<script src="products.js"></script>
+
+<script>
+    // Check if products array exists, fallback to empty array if not loaded
+    let productList = (typeof products !== 'undefined') ? [...products] : [];
+
+    function renderAdminTable() {
+        const searchInput = document.getElementById('admin-search');
+        const search = searchInput ? searchInput.value.toLowerCase() : '';
+        const tbody = document.getElementById('admin-table-body');
+        
+        if (productList.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 20px; color:#888;">No products found or products.js file is missing.</td></tr>`;
+            return;
+        }
+
+        const filtered = productList.filter(p => 
+            (p.name && p.name.toLowerCase().includes(search)) || 
+            (p.category && p.category.toLowerCase().includes(search))
+        );
+
+        if (filtered.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 20px; color:#888;">No matching products found.</td></tr>`;
+            return;
+        }
+
+        tbody.innerHTML = filtered.map(p => `
+            <tr>
+                <td><img src="${p.image}" class="img-thumb" onerror="this.src='https://via.placeholder.com/45'"></td>
+                <td><strong>${p.name}</strong><br><small style="color:#666;">ID: ${p.id}</small></td>
+                <td>${p.category}</td>
+                <td>৳${p.price} ${p.oldPrice ? `<del style="color:#888; font-size:0.8rem;">৳${p.oldPrice}</del>` : ''}</td>
+                <td>
+                    <button class="btn-sm btn-edit" onclick="editProduct(${p.id})">Edit</button>
+                    <button class="btn-sm btn-del" onclick="deleteProduct(${p.id})">Delete</button>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    function saveProduct() {
+        const id = document.getElementById('p-id').value;
+        const name = document.getElementById('p-name').value.trim();
+        const category = document.getElementById('p-category').value.trim();
+        const price = parseFloat(document.getElementById('p-price').value);
+        const oldPrice = parseFloat(document.getElementById('p-old-price').value) || null;
+        const image = document.getElementById('p-image').value.trim();
+        const description = document.getElementById('p-desc').value.trim();
+        const rating = parseFloat(document.getElementById('p-rating').value) || 5;
+        const ratingCount = parseInt(document.getElementById('p-rating-count').value) || 0;
+
+        if (!name || !category || isNaN(price) || !image) {
+            alert("Please fill in Name, Category, Price, and Image URL.");
+            return;
+        }
+
+        if (id) {
+            const index = productList.findIndex(p => p.id == id);
+            if (index > -1) {
+                productList[index] = { id: parseInt(id), name, category, price, oldPrice, rating, ratingCount, image, description };
+            }
+        } else {
+            const newId = productList.length > 0 ? Math.max(...productList.map(p => p.id)) + 1 : 1;
+            productList.push({ id: newId, name, category, price, oldPrice, rating, ratingCount, image, description });
+        }
+
+        resetForm();
+        renderAdminTable();
+        alert("Product saved! Click 'Export Updated products.js' to download the updated file.");
+    }
+
+    function editProduct(id) {
+        const p = productList.find(item => item.id === id);
+        if (!p) return;
+
+        document.getElementById('p-id').value = p.id;
+        document.getElementById('p-name').value = p.name;
+        document.getElementById('p-category').value = p.category;
+        document.getElementById('p-price').value = p.price;
+        document.getElementById('p-old-price').value = p.oldPrice || '';
+        document.getElementById('p-image').value = p.image;
+        document.getElementById('p-desc').value = p.description;
+        document.getElementById('p-rating').value = p.rating;
+        document.getElementById('p-rating-count').value = p.ratingCount;
+
+        document.getElementById('form-title').textContent = "Edit Product #" + p.id;
+        document.getElementById('save-btn').textContent = "Update Product";
+        document.getElementById('cancel-btn').style.display = "block";
+    }
+
+    function deleteProduct(id) {
+        if (confirm("Are you sure you want to delete product #" + id + "?")) {
+            productList = productList.filter(p => p.id !== id);
+            renderAdminTable();
+        }
+    }
+
+    function resetForm() {
+        document.getElementById('p-id').value = '';
+        document.getElementById('p-name').value = '';
+        document.getElementById('p-category').value = '';
+        document.getElementById('p-price').value = '';
+        document.getElementById('p-old-price').value = '';
+        document.getElementById('p-image').value = '';
+        document.getElementById('p-desc').value = '';
+        document.getElementById('p-rating').value = '4.5';
+        document.getElementById('p-rating-count').value = '10';
+
+        document.getElementById('form-title').textContent = "Add New Product";
+        document.getElementById('save-btn').textContent = "Add Product";
+        document.getElementById('cancel-btn').style.display = "none";
+    }
+
+    function exportProductsFile() {
+        const dataStr = "const products = " + JSON.stringify(productList, null, 4) + ";";
+        const blob = new Blob([dataStr], { type: "text/javascript" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "products.js";
+        link.click();
+    }
+
+    document.addEventListener('DOMContentLoaded', renderAdminTable);
+</script>
+
+</body>
+</html>
