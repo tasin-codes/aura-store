@@ -416,16 +416,44 @@
                 </div>
 
                 <div class="form-section">
-                    <h3>2. Payment Method</h3>
-                    <div class="payment-option">
-                        <input type="radio" id="cod" name="payment" value="COD" checked>
-                        <label for="cod">
-                            <strong>Cash on Delivery (COD)</strong>
-                            <small>Pay with cash directly upon parcel arrival.</small>
-                        </label>
-                    </div>
-                </div>
+    <h3>2. Payment Method</h3>
+    
+    <!-- Cash on Delivery -->
+    <div class="payment-option" style="margin-bottom: 12px;">
+        <input type="radio" id="cod" name="payment" value="COD" checked onclick="togglePaymentDetails('cod')">
+        <label for="cod">
+            <strong>Cash on Delivery (COD)</strong>
+            <small style="display:block; color:#666;">Pay with cash directly upon parcel arrival.</small>
+        </label>
+    </div>
 
+    <!-- bKash Personal -->
+    <div class="payment-option" style="margin-bottom: 12px;">
+        <input type="radio" id="bkash" name="payment" value="bKash" onclick="togglePaymentDetails('bkash')">
+        <label for="bkash">
+            <strong>bKash (Personal)</strong>
+            <small style="display:block; color:#666;">Send Money to our personal bKash number.</small>
+        </label>
+    </div>
+
+    <!-- Dynamic bKash Info Box -->
+    <div id="bkash-info" style="display: none; background: #fff0f6; border: 1px solid #ffadd2; padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 0.9rem;">
+        <p style="margin: 0 0 6px; font-weight: bold; color: #d40064; font-size: 1rem;">bKash Personal Number: 01861403911</p>
+        <p style="margin: 0 0 10px; color: #444; line-height: 1.4;">
+            অনুগ্রহ করে আপনার বিকাশ অ্যাপ বা *247# থেকে **Send Money** অপশন ব্যবহার করে মোট টাকার পরিমাণ পাঠান। টাকা পাঠানোর পর নিচের ঘরগুলো পূরণ করুন:
+        </p>
+        <div style="margin-bottom: 8px;">
+            <label style="display:block; font-size: 0.85rem; font-weight: 600; color: #333; margin-bottom: 4px;">Your bKash Number (যে নম্বর থেকে টাকা পাঠিয়েছেন):</label>
+            <input type="tel" id="bkash-sender-num" placeholder="e.g. 017XXXXXXXX" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div>
+            <label style="display:block; font-size: 0.85rem; font-weight: 600; color: #333; margin-bottom: 4px;">bKash Transaction ID (TrxID):</label>
+            <input type="text" id="bkash-trxid" placeholder="e.g. 9B7X8Y2Z" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-transform: uppercase;">
+        </div>
+    </div>
+
+   
+                
                 <div class="checkout-summary">
                     <h3>Order Summary</h3>
                     <div class="summary-line">
