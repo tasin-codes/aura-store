@@ -14,7 +14,7 @@ const products = [
     },
     {
         "id": 2,
-        "name": " ANC Headphones",
+        "name": "ANC Headphones",
         "category": "Electronics",
         "price": 5800,
         "oldPrice": 6500,
@@ -103,9 +103,9 @@ const products = [
         "ratingCount": 10,
         "quantity": 0,
         "stock_status": "out_of_stock",
-        "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500](https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500",
+        "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500",
         "description": "High quality travel backpack for daily use"
-    }
+    },
     {
         "id": 10,
         "name": "Bluetooth Headphones",
@@ -114,10 +114,10 @@ const products = [
         "oldPrice": 2000,
         "rating": 4.5,
         "ratingCount": 10,
-        "quantity":1,
-        "stock_status":in_stock",
-        "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500](https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500",
-        "description": ""
+        "quantity": 1,
+        "stock_status": "in_stock",
+        "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500",
+        "description": "High quality bluetooth headphones"
     },
     {
         "id": 11,
@@ -127,10 +127,10 @@ const products = [
         "oldPrice": 2200,
         "rating": 4.5,
         "ratingCount": 10,
-         "quantity":1,
-        "stock_status":in_stock",
-        "image": "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=500](https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=500",
-        "description": ""
+        "quantity": 1,
+        "stock_status": "in_stock",
+        "image": "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=500",
+        "description": "Ergonomic wireless gaming controller"
     },
     {
         "id": 12,
@@ -140,9 +140,10 @@ const products = [
         "oldPrice": 999,
         "rating": 4.5,
         "ratingCount": 10,
-         "quantity":1,
-        "stock_status":in_stock",
-        "image": "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500](https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500",
-        "description": ""
+        "quantity": 1,
+        "stock_status": "in_stock",
+        "image": "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500",
+        "description": "High precision RGB gaming mouse"
     }
 ];
+       
