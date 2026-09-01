@@ -1733,7 +1733,59 @@ div.product-card .card-actions {
 .product-card .card-footer-price {
     margin-bottom: 6px !important;
 }
+/* Card Height & Layout Reset (Fixes tall empty space) */
+.product-card {
+    height: auto !important;
+    min-height: unset !important;
+    padding: 12px !important;
+}
 
+.product-card .card-content {
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important; /* মাঝখানের ফাঁকা জায়গা টানা বন্ধ করবে */
+    gap: 4px !important;
+    padding-top: 8px !important;
+}
+
+/* Image height fix */
+.product-card .card-image-wrap {
+    height: 160px !important;
+    min-height: 160px !important;
+}
+
+.product-card .card-image-wrap img {
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+/* Spacing between text elements */
+.product-card .product-category {
+    margin: 0 !important;
+}
+
+.product-card .product-title {
+    margin: 2px 0 !important;
+    line-height: 1.2 !important;
+}
+
+.product-card .rating-stars {
+    margin: 2px 0 !important;
+}
+
+.product-card .product-description {
+    margin: 2px 0 6px 0 !important;
+    line-height: 1.3 !important;
+}
+
+.product-card .card-footer-price {
+    margin: 4px 0 6px 0 !important;
+}
+
+.product-card .card-actions-grid {
+    margin-top: 4px !important;
+}
 .product-card .card-actions-grid {
     margin-top: 4px !important;
 }
