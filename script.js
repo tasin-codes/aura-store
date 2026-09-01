@@ -3,13 +3,13 @@
    ========================================================================== */
 const BUSINESS_CONFIG = {
     businessName: "AURA STORE",
-    whatsappNumber: "8801700000000",
+    whatsappNumber: "+8801861403911",
     currency: "৳",
     deliveryChargeInside: 80,
     deliveryChargeOutside: 150,
-    phone: "+880 1700-000000",
+    phone: "+880 1861403911",
     email: "tasinbinazam@gmail.com",
-    address: "Gulshan Avenue, Block NW-2, Dhaka"
+    address: "Mirpur - 1, Block-A, Dhaka"
 };
 
 /* ==========================================================================
