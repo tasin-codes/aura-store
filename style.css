@@ -1356,3 +1356,24 @@ button {
         text-align: center;
     }
 }
+/* ==========================================
+   Sold Out Button & Badge Styles
+   ========================================== */
+
+/* Sold Out Button (Disabled State) */
+.btn.disabled, 
+button:disabled {
+    background-color: #9ca3af !important;
+    border-color: #9ca3af !important;
+    color: #ffffff !important;
+    cursor: not-allowed !important;
+    opacity: 0.8 !important;
+    box-shadow: none !important;
+}
+
+/* Sold Out Red Badge */
+.badge-discount[style*="#ef4444"] {
+    background-color: #ef4444 !important;
+    color: #ffffff !important;
+    font-weight: 700;
+}
