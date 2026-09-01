@@ -1441,3 +1441,49 @@ button:disabled {
 .product-card .card-actions {
     margin-top: 6px !important;
 }
+/* Product card Content Compact Area */
+.product-info, 
+.product-content, 
+.product-details {
+    padding: 10px !important;
+}
+
+/* Category name */
+.product-card span, 
+.product-category {
+    font-size: 11px !important;
+    margin-bottom: 2px !important;
+}
+
+/* Title size & line height */
+.product-card h3 {
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+    margin: 3px 0 !important;
+}
+
+/* Description text size & clamp */
+.product-card p, 
+.product-description {
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+    margin: 4px 0 8px 0 !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Price font size */
+.product-card .price, 
+.price-row {
+    font-size: 15px !important;
+    margin-bottom: 8px !important;
+}
+
+/* Buttons size */
+.product-card button, 
+.product-card .btn {
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+}
