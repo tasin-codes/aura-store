@@ -232,14 +232,23 @@
                 </ul>
             </div>
 
-            <div class="footer-links-group">
+           <div class="footer-links-group">
                 <h4>Customer Care</h4>
                 <ul>
-                    <li><a href="#">Shipping Policy</a></li>
-                    <li><a href="#">Returns & Exchanges</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="javascript:void(0)" onclick="openPolicyModal('shipping')">Shipping Policy</a></li>
+                    <li><a href="javascript:void(0)" onclick="openPolicyModal('returns')">Returns & Exchanges</a></li>
+                    <li><a href="javascript:void(0)" onclick="openPolicyModal('terms')">Terms of Service</a></li>
+                    <li><a href="javascript:void(0)" onclick="openPolicyModal('privacy')">Privacy Policy</a></li>
                 </ul>
+            </div>
+
+            <!-- Policy Modal (Pop-up Window) -->
+            <div id="policy-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
+                <div style="background: #ffffff; color: #222; max-width: 650px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 30px; border-radius: 12px; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.2); font-family: sans-serif;">
+                    <span onclick="closePolicyModal()" style="position: absolute; top: 15px; right: 20px; font-size: 26px; cursor: pointer; font-weight: bold; color: #666;">&times;</span>
+                    <h2 id="modal-title" style="margin-top: 0; font-size: 1.6rem; color: #111; border-bottom: 2px solid #eee; padding-bottom: 10px;"></h2>
+                    <div id="modal-body" style="line-height: 1.7; font-size: 0.95rem; color: #444; margin-top: 15px;"></div>
+                </div>
             </div>
 
             <div class="footer-newsletter">
@@ -423,6 +432,84 @@
 
 <!-- Your JavaScript -->
 <script src="script.js"></script>
+<script>
+    const policyDetails = {
+        shipping: {
+            title: "Shipping & Delivery Policy",
+            content: `
+                <p>At <strong>Aura Store</strong>, we aim to deliver your order as quickly and safely as possible across Bangladesh.</p>
+                <h4 style="margin: 12px 0 5px; color: #111;">1. Delivery Timeframes</h4>
+                <p>• <strong>Inside Dhaka:</strong> Delivered within 24 to 48 hours.</p>
+                <p>• <strong>Outside Dhaka:</strong> Delivered within 3 to 5 business days.</p>
+                <h4 style="margin: 12px 0 5px; color: #111;">2. Shipping Charges</h4>
+                <p>• Inside Dhaka: <strong>৳80</strong></p>
+                <p>• Outside Dhaka: <strong>৳150</strong> (Advance delivery fee required for outside Dhaka orders).</p>
+                <h4 style="margin: 12px 0 5px; color: #111;">3. Order Tracking</h4>
+                <p>Once your order is dispatched, you will receive a confirmation SMS with tracking details or courier information.</p>
+            `
+        },
+        returns: {
+            title: "Returns, Refunds & Exchanges",
+            content: `
+                <p>We want you to love what you ordered. If something isn't right, we are here to help!</p>
+                <h4 style="margin: 12px 0 5px; color: #111;">1. Return Conditions</h4>
+                <p>• Returns/Exchanges must be requested within <strong>7 days</strong> of delivery.</p>
+                <p>• The item must be unused, unwashed, with original tags and packaging intact.</p>
+                <p>• You must inspect the parcel in front of the delivery person. If damaged or mismatched, please return it immediately to the delivery agent.</p>
+                <h4 style="margin: 12px 0 5px; color: #111;">2. Non-Returnable Items</h4>
+                <p>Customized products, clearance sale items, and personal care products are non-returnable.</p>
+                <h4 style="margin: 12px 0 5px; color: #111;">3. Refunds</h4>
+                <p>Approved refunds will be processed via bKash/Nagad or Bank transfer within 5-7 business days after product inspection.</p>
+            `
+        },
+        terms: {
+            title: "Terms of Service",
+            content: `
+                <p>Welcome to Aura Store. By accessing or purchasing from our website, you agree to the following terms:</p>
+                <h4 style="margin: 12px 0 5px; color: #111;">1. General Conditions</h4>
+                <p>• We reserve the right to refuse service or cancel orders at our discretion due to stock issues or suspected fraud.</p>
+                <p>• Product colors may vary slightly due to photographic lighting or screen settings.</p>
+                <h4 style="margin: 12px 0 5px; color: #111;">2. Pricing & Payments</h4>
+                <p>• All prices are listed in BDT (Bangladeshi Taka).</p>
+                <p>• Prices are subject to change without prior notice.</p>
+                <h4 style="margin: 12px 0 5px; color: #111;">3. Intellectual Property</h4>
+                <p>All content, images, and branding on this website are the intellectual property of Aura Store.</p>
+            `
+        },
+        privacy: {
+            title: "Privacy Policy",
+            content: `
+                <p>Aura Store respects your personal privacy. We are committed to protecting the information you share with us.</p>
+                <h4 style="margin: 12px 0 5px; color: #111;">1. Information We Collect</h4>
+                <p>When you place an order, we collect your name, phone number, shipping address, and email address solely to process your order.</p>
+                <h4 style="margin: 12px 0 5px; color: #111;">2. Data Security</h4>
+                <p>We do not store your payment or card details. All online transactions are processed through secure payment gateways.</p>
+                <h4 style="margin: 12px 0 5px; color: #111;">3. Third-Party Sharing</h4>
+                <p>Your details are strictly shared with trusted courier partners (e.g., Steadfast, Pathao) solely for order delivery purposes. We never sell your data to third parties.</p>
+            `
+        }
+    };
 
+    function openPolicyModal(type) {
+        if (policyDetails[type]) {
+            document.getElementById('modal-title').innerText = policyDetails[type].title;
+            document.getElementById('modal-body').innerHTML = policyDetails[type].content;
+            document.getElementById('policy-modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closePolicyModal() {
+        document.getElementById('policy-modal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById('policy-modal');
+        if (event.target === modal) {
+            closePolicyModal();
+        }
+    }
+</script>
 </body>
 </html>
