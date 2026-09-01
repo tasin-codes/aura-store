@@ -1487,3 +1487,51 @@ button:disabled {
     padding: 6px 10px !important;
     font-size: 12px !important;
 }
+/* Card overall height fix */
+.product-card {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    padding: 10px !important;
+}
+
+/* Image container & height fix (ছবি ছোট করবে) */
+.product-card img, 
+.product-image img, 
+.product-card .card-img {
+    height: 140px !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+}
+
+/* Gap reduction */
+.product-card .product-info, 
+.product-card .card-body {
+    padding: 6px 0 0 0 !important;
+    gap: 2px !important;
+}
+
+/* Text & Title compact */
+.product-card h3 {
+    font-size: 0.85rem !important;
+    margin: 2px 0 !important;
+    line-height: 1.1 !important;
+}
+
+.product-card p {
+    font-size: 0.75rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 4px !important;
+}
+
+/* Price & Buttons space fix */
+.product-card .price-row, 
+.product-card .card-actions {
+    margin-top: 4px !important;
+}
+
+.product-card button, 
+.product-card .btn {
+    padding: 4px 8px !important;
+    font-size: 11px !important;
+}
