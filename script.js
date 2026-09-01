@@ -145,7 +145,6 @@ function populateCategoryFilter() {
             : (hasDiscount ? `<span class="badge-discount">Sale</span>` : '');
 
         return `
-       return `
     <div class="product-card" data-id="${product.id}" style="padding: 4px !important;">
         <div class="card-image-wrap" onclick="openProductModal(${product.id})" style="height: 110px !important; min-height: 110px !important; max-height: 110px !important; overflow: hidden !important; border-radius: 6px !important;">
             <img src="${product.image}" alt="${product.name}" loading="lazy" style="height: 100% !important; width: 100% !important; object-fit: cover !important;">
