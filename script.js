@@ -115,7 +115,7 @@ function populateCategoryFilter() {
 /* ==========================================================================
    PRODUCT RENDERING & FILTERING
    ========================================================================== */
-function renderProducts(items) {
+ function renderProducts(items) {
     if (items.length === 0) {
         productsGrid.innerHTML = '';
         emptyProducts.classList.remove('hidden');
@@ -132,11 +132,11 @@ function renderProducts(items) {
 
         // Sold Out থাকলে বাটন ও ব্যাজ কেমন হবে
         const actionButtonsHTML = isOutOfStock
-            ? `<button class="btn btn-secondary disabled" disabled style="width: 100%; background-color: #9ca3af; cursor: not-allowed; opacity: 0.8;">Sold Out</button>`
-            : `<button class="btn btn-secondary" onclick="addToCart(${product.id})">
+            ? `<button class="btn btn-secondary disabled" disabled style="width: 100%; background-color: #9ca3af; cursor: not-allowed; opacity: 0.8; padding: 4px 8px; font-size: 0.75rem;">Sold Out</button>`
+            : `<button class="btn btn-secondary" onclick="addToCart(${product.id})" style="padding: 4px 8px; font-size: 0.75rem;">
                     <i class="fa-solid fa-cart-plus"></i> Add
                </button>
-               <button class="btn btn-primary" onclick="buyNow(${product.id})">
+               <button class="btn btn-primary" onclick="buyNow(${product.id})" style="padding: 4px 8px; font-size: 0.75rem;">
                     Buy Now
                </button>`;
 
@@ -145,9 +145,9 @@ function renderProducts(items) {
             : (hasDiscount ? `<span class="badge-discount">Sale</span>` : '');
 
         return `
-            <div class="product-card" data-id="${product.id}">
-                <div class="card-image-wrap" onclick="openProductModal(${product.id})">
-                    <img src="${product.image}" alt="${product.name}" loading="lazy">
+            <div class="product-card" data-id="${product.id}" style="padding: 8px !important;">
+                <div class="card-image-wrap" onclick="openProductModal(${product.id})" style="height: 140px; overflow: hidden; border-radius: 6px;">
+                    <img src="${product.image}" alt="${product.name}" loading="lazy" style="height: 100% !important; width: 100% !important; object-fit: cover !important;">
                     ${badgeHTML}
                     <button class="btn-wishlist ${isWishlisted ? 'active' : ''}" 
                             onclick="event.stopPropagation(); toggleWishlist(${product.id})" 
@@ -155,19 +155,19 @@ function renderProducts(items) {
                         <i class="${isWishlisted ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
                     </button>
                 </div>
-                <div class="card-content">
-                    <span class="product-category">${product.category}</span>
-                    <h3 class="product-title" onclick="openProductModal(${product.id})">${product.name}</h3>
-                    <div class="rating-stars">
+                <div class="card-content" style="padding-top: 6px !important; gap: 2px !important;">
+                    <span class="product-category" style="font-size: 0.65rem !important; margin-bottom: 0 !important;">${product.category}</span>
+                    <h3 class="product-title" onclick="openProductModal(${product.id})" style="font-size: 0.85rem !important; line-height: 1.1 !important; margin: 2px 0 !important;">${product.name}</h3>
+                    <div class="rating-stars" style="font-size: 0.7rem !important; margin-bottom: 2px !important;">
                         ${getStarRatingHTML(product.rating)}
                         <span class="rating-count">(${product.ratingCount})</span>
                     </div>
-                    <p class="product-description">${product.description}</p>
-                    <div class="card-footer-price">
-                        <span class="current-price">${BUSINESS_CONFIG.currency}${product.price}</span>
-                        ${hasDiscount ? `<span class="old-price">${BUSINESS_CONFIG.currency}${product.oldPrice}</span>` : ''}
+                    <p class="product-description" style="font-size: 0.75rem !important; line-height: 1.2 !important; margin: 2px 0 6px 0 !important; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${product.description}</p>
+                    <div class="card-footer-price" style="margin-bottom: 4px !important;">
+                        <span class="current-price" style="font-size: 0.9rem !important; font-weight: bold;">${BUSINESS_CONFIG.currency}${product.price}</span>
+                        ${hasDiscount ? `<span class="old-price" style="font-size: 0.75rem !important;">${BUSINESS_CONFIG.currency}${product.oldPrice}</span>` : ''}
                     </div>
-                    <div class="card-actions-grid">
+                    <div class="card-actions-grid" style="gap: 4px !important; margin-top: 2px !important;">
                         ${actionButtonsHTML}
                     </div>
                 </div>
