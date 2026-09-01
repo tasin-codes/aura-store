@@ -467,15 +467,16 @@ function handleCheckoutSubmit(e) {
     }).join('\n');
 
 
-    // ==========================================
-    // CUSTOMER EMAIL
-    // ==========================================
+    // =========================================================
+    // EMAIL DATA
+    // =========================================================
 
-    const customerEmailParams = {
+    const emailParams = {
         to_email: orderData.email,
         customer_name: orderData.name,
         order_id: orderData.orderId,
         phone: orderData.phone,
+        email: orderData.email,
         address: `${orderData.address}, ${orderData.city}`,
         product: orderItems,
 
@@ -485,51 +486,59 @@ function handleCheckoutSubmit(e) {
         ),
 
         total: `${BUSINESS_CONFIG.currency}${orderData.total}`,
-
         payment_method: "Cash on Delivery",
-
         notes: orderData.notes
     };
 
 
-    console.log("Sending customer confirmation:", customerEmailParams);
+    console.log("Sending order emails:", emailParams);
 
 
-    // ==========================================
-    // SEND CUSTOMER EMAIL
-    // ==========================================
+    // =========================================================
+    // SEND BOTH EMAILS
+    // =========================================================
 
-    emailjs.send(
+    const ownerEmail = emailjs.send(
+        "service_xpo9pt9",
+        "template_f9swdxh",
+        emailParams
+    );
+
+    const customerEmail = emailjs.send(
         "service_xpo9pt9",
         "template_tkdrcrs",
-        customerEmailParams
-    )
-    .then(function(response) {
+        emailParams
+    );
 
-        console.log(
-            "Customer confirmation email sent!",
-            response.status,
-            response.text
-        );
 
-        // Show order confirmation on website
-        showOrderConfirmation(orderData);
+    // =========================================================
+    // AFTER BOTH EMAILS ARE SENT
+    // =========================================================
 
-        // Clear cart
-        clearCart();
+    Promise.all([ownerEmail, customerEmail])
+        .then(function(responses) {
 
-        // Close checkout
-        closeCheckout();
+            console.log("Owner email sent:", responses[0]);
+            console.log("Customer confirmation sent:", responses[1]);
 
-    })
-    .catch(function(error) {
+            // Show confirmation on website
+            showOrderConfirmation(orderData);
 
-        console.error("Customer EmailJS Error:", error);
+            // Clear cart
+            clearCart();
 
-        alert(
-            "Order could not be submitted. Please try again."
-        );
-    });
+            // Close checkout
+            closeCheckout();
+
+        })
+        .catch(function(error) {
+
+            console.error("EmailJS Error:", error);
+
+            alert(
+                "Order could not be submitted. Please try again."
+            );
+        });
 }
 
 function generateWhatsAppMessage() {
