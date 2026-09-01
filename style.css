@@ -1580,3 +1580,56 @@ button:disabled {
 .product-card .card-actions {
     margin-top: 6px !important;
 }
+/* FORCE COMPACT PRODUCT CARDS */
+.product-card, 
+div.product-card {
+    padding: 10px !important;
+    gap: 0 !important;
+}
+
+/* Image container & height force */
+.product-card img,
+.product-card .card-img,
+div.product-card img {
+    height: 160px !important;
+    max-height: 160px !important;
+    object-fit: cover !important;
+    width: 100% !important;
+}
+
+/* Content spacing */
+.product-card .product-info,
+.product-card .card-body,
+div.product-card > div:not(.card-img) {
+    padding-top: 6px !important;
+    margin: 0 !important;
+}
+
+/* Titles */
+.product-card h3,
+div.product-card h3 {
+    margin: 2px 0 !important;
+    font-size: 15px !important;
+    line-height: 1.2 !important;
+}
+
+/* Description 2 lines limit */
+.product-card p,
+.product-card .description,
+div.product-card p {
+    margin: 2px 0 6px 0 !important;
+    font-size: 12px !important;
+    line-height: 1.3 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+}
+
+/* Buttons and Price area */
+.product-card .price-row,
+.product-card .card-actions,
+div.product-card .card-actions {
+    margin-top: 4px !important;
+    padding-top: 0 !important;
+}
