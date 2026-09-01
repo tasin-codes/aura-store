@@ -1680,3 +1680,24 @@ div.product-card .card-actions {
     margin-top: auto !important;
     padding-top: 4px !important;
 }
+/* Inline styles override */
+.product-card * {
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
+
+/* Image height */
+.product-card img {
+    height: 160px !important;
+    object-fit: cover !important;
+}
+
+/* Button & Price section space fix */
+.product-card .price-row,
+.product-card .card-actions,
+.product-card button {
+    margin-top: 6px !important;
+    padding: 6px 12px !important;
+}
