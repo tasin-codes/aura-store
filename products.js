@@ -7,6 +7,8 @@ const products = [
         "oldPrice": 4200,
         "rating": 4.8,
         "ratingCount": 42,
+        "quantity": 3,
+        "stock_status": "in_stock",
         "image": "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80",
         "description": "Crafted from full-grain genuine leather. Features a dedicated 15-inch laptop sleeve, water-resistant interior lining, and ergonomic padded shoulder straps."
     },
@@ -18,6 +20,8 @@ const products = [
         "oldPrice": 6500,
         "rating": 4.9,
         "ratingCount": 128,
+        "quantity": 1,
+        "stock_status": "in_stock",
         "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80",
         "description": "Premium active noise cancelling over-ear headphones with custom 40mm drivers, 30-hour battery life, and ultra-soft memory foam ear cushions."
     },
@@ -29,6 +33,8 @@ const products = [
         "oldPrice": null,
         "rating": 4.6,
         "ratingCount": 19,
+        "quantity": 0,
+        "stock_status": "out_of_stock",
         "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80",
         "description": "Japanese quartz movement timepiece with scratch-resistant sapphire crystal glass, brushed stainless steel case, and 50m water resistance."
     },
@@ -95,6 +101,8 @@ const products = [
         "oldPrice": 2900,
         "rating": 4.5,
         "ratingCount": 10,
+        "quantity": 0,
+        "stock_status": "out_of_stock",
         "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500](https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500",
         "description": "High quality travel backpack for daily use"
     }
