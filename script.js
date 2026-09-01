@@ -126,12 +126,29 @@ function renderProducts(items) {
     productsGrid.innerHTML = items.map(product => {
         const isWishlisted = wishlist.includes(product.id);
         const hasDiscount = product.oldPrice && product.oldPrice > product.price;
+        
+        // স্টক চেক কন্ডিশন
+        const isOutOfStock = product.quantity === 0 || product.stock_status === "out_of_stock";
+
+        // Sold Out থাকলে বাটন ও ব্যাজ কেমন হবে
+        const actionButtonsHTML = isOutOfStock
+            ? `<button class="btn btn-secondary disabled" disabled style="width: 100%; background-color: #9ca3af; cursor: not-allowed; opacity: 0.8;">Sold Out</button>`
+            : `<button class="btn btn-secondary" onclick="addToCart(${product.id})">
+                    <i class="fa-solid fa-cart-plus"></i> Add
+               </button>
+               <button class="btn btn-primary" onclick="buyNow(${product.id})">
+                    Buy Now
+               </button>`;
+
+        const badgeHTML = isOutOfStock
+            ? `<span class="badge-discount" style="background-color: #ef4444;">Sold Out</span>`
+            : (hasDiscount ? `<span class="badge-discount">Sale</span>` : '');
 
         return `
             <div class="product-card" data-id="${product.id}">
                 <div class="card-image-wrap" onclick="openProductModal(${product.id})">
                     <img src="${product.image}" alt="${product.name}" loading="lazy">
-                    ${hasDiscount ? `<span class="badge-discount">Sale</span>` : ''}
+                    ${badgeHTML}
                     <button class="btn-wishlist ${isWishlisted ? 'active' : ''}" 
                             onclick="event.stopPropagation(); toggleWishlist(${product.id})" 
                             aria-label="Wishlist">
@@ -151,12 +168,7 @@ function renderProducts(items) {
                         ${hasDiscount ? `<span class="old-price">${BUSINESS_CONFIG.currency}${product.oldPrice}</span>` : ''}
                     </div>
                     <div class="card-actions-grid">
-                        <button class="btn btn-secondary" onclick="addToCart(${product.id})">
-                            <i class="fa-solid fa-cart-plus"></i> Add
-                        </button>
-                        <button class="btn btn-primary" onclick="buyNow(${product.id})">
-                            Buy Now
-                        </button>
+                        ${actionButtonsHTML}
                     </div>
                 </div>
             </div>
