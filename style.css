@@ -455,8 +455,22 @@ button {
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(6, 1fr); /* এক সারিতে ৬টি প্রোডাক্ট */
+    gap: 15px; /* কার্ডের মাঝের গ্যাপ কিছুটা কমানো হয়েছে যাতে সুন্দর ফিট হয় */
+}
+
+/* ট্যাবলেট এবং ল্যাপটপ স্ক্রিনের জন্য রেসপনসিভ অ্যাডজাস্টমেন্ট */
+@media (max-width: 1200px) {
+    .products-grid {
+        grid-template-columns: repeat(4, 1fr); /* ছোট ডেসকটপ/ট্যাবলেটে ৪টি */
+    }
+}
+
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr); /* মোবাইলে ২ টি করে দেখাবে */
+        gap: 10px;
+    }
 }
 
 .product-card {
@@ -1376,4 +1390,22 @@ button:disabled {
     background-color: #ef4444 !important;
     color: #ffffff !important;
     font-weight: 700;
+}
+/* 6-Column Layout Adjustments */
+.product-card .card-content {
+    padding: 12px;
+}
+
+.product-card .product-title {
+    font-size: 0.95rem;
+    line-height: 1.3;
+}
+
+.product-card .current-price {
+    font-size: 1.05rem;
+}
+
+.product-card .card-actions-grid button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
 }
