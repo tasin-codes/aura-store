@@ -1789,3 +1789,63 @@ div.product-card .card-actions {
 .product-card .card-actions-grid {
     margin-top: 4px !important;
 }
+/* Product Card Content Half-Size Fix */
+.product-card .card-content {
+    padding: 6px !important;
+    gap: 2px !important;
+}
+
+/* Category Text */
+.product-card .product-category {
+    font-size: 0.65rem !important;
+    margin-bottom: 2px !important;
+    letter-spacing: 0.5px !important;
+}
+
+/* Title Text */
+.product-card .product-title {
+    font-size: 0.8rem !important;
+    line-height: 1.1 !important;
+    margin: 2px 0 !important;
+    font-weight: 600 !important;
+}
+
+/* Star Rating */
+.product-card .rating-stars {
+    font-size: 0.65rem !important;
+    margin-bottom: 2px !important;
+}
+
+.product-card .rating-count {
+    font-size: 0.65rem !important;
+}
+
+/* Description Text */
+.product-card .product-description {
+    font-size: 0.7rem !important;
+    line-height: 1.15 !important;
+    margin: 2px 0 4px 0 !important;
+}
+
+/* Price Section */
+.product-card .card-footer-price {
+    margin-bottom: 4px !important;
+}
+
+.product-card .current-price {
+    font-size: 0.85rem !important;
+}
+
+.product-card .old-price {
+    font-size: 0.7rem !important;
+}
+
+/* Buttons Size Half */
+.product-card .card-actions-grid button,
+.product-card .btn-secondary,
+.product-card .btn-primary {
+    padding: 3px 6px !important;
+    font-size: 0.7rem !important;
+    min-height: unset !important;
+    height: auto !important;
+}
