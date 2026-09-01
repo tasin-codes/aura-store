@@ -106,4 +106,43 @@ const products = [
         "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500](https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500",
         "description": "High quality travel backpack for daily use"
     }
+    {
+        "id": 10,
+        "name": "Bluetooth Headphones",
+        "category": "Electronics",
+        "price": 1500,
+        "oldPrice": 2000,
+        "rating": 4.5,
+        "ratingCount": 10,
+        "quantity":1,
+        "stock_status":in_stock",
+        "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500](https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500",
+        "description": ""
+    },
+    {
+        "id": 11,
+        "name": "Gaming Controller",
+        "category": "Electronics",
+        "price": 1799,
+        "oldPrice": 2200,
+        "rating": 4.5,
+        "ratingCount": 10,
+         "quantity":1,
+        "stock_status":in_stock",
+        "image": "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=500](https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=500",
+        "description": ""
+    },
+    {
+        "id": 12,
+        "name": "Gaming Mouse",
+        "category": "Electronics",
+        "price": 750,
+        "oldPrice": 999,
+        "rating": 4.5,
+        "ratingCount": 10,
+         "quantity":1,
+        "stock_status":in_stock",
+        "image": "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500](https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500",
+        "description": ""
+    }
 ];
