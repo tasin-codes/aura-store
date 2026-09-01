@@ -608,3 +608,56 @@ function setupEventListeners() {
     mobileNavOverlay.addEventListener('click', closeMobileNav);
     mobileLinks.forEach(link => link.addEventListener('click', closeMobileNav));
 }
+// Live Banner Auto-Slider JavaScript
+let slideIndex = 0;
+let slides = document.querySelectorAll(".slide");
+let dots = document.querySelectorAll(".dot");
+let slideInterval;
+
+function showSlide(index) {
+    slides = document.querySelectorAll(".slide");
+    dots = document.querySelectorAll(".dot");
+    if (!slides.length) return;
+    
+    slides.forEach((slide) => slide.classList.remove("active"));
+    dots.forEach((dot) => dot.classList.remove("active"));
+    
+    slideIndex = (index + slides.length) % slides.length;
+    
+    slides[slideIndex].classList.add("active");
+    dots[slideIndex].classList.add("active");
+}
+
+function nextSlide() {
+    showSlide(slideIndex + 1);
+}
+
+function currentSlide(index) {
+    showSlide(index);
+    resetTimer();
+}
+
+function resetTimer() {
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, 4000); // ৪ সেকেন্ড পর পর ব্যানার চেঞ্জ হবে
+}
+
+// Dynamic Landing Page Functionality
+document.addEventListener("DOMContentLoaded", () => {
+    resetTimer();
+
+    // Landing Page Handler: index.html?landing=true&id=PRODUCT_ID
+    const urlParams = new URLSearchParams(window.location.search);
+    const isLanding = urlParams.get('landing');
+    const productId = urlParams.get('id');
+
+    if (isLanding === 'true' && productId) {
+        document.querySelector('.hero-slider-section')?.style.setProperty('display', 'none', 'important');
+        document.querySelector('.about-section')?.style.setProperty('display', 'none', 'important');
+        document.querySelector('.contact-section')?.style.setProperty('display', 'none', 'important');
+
+        if (typeof openProductModal === 'function') {
+            openProductModal(parseInt(productId));
+        }
+    }
+});
