@@ -145,34 +145,35 @@ function populateCategoryFilter() {
             : (hasDiscount ? `<span class="badge-discount">Sale</span>` : '');
 
         return `
-            <div class="product-card" data-id="${product.id}" style="padding: 6px !important;">
-                <div class="card-image-wrap" onclick="openProductModal(${product.id})" style="height: 110px !important; min-height: 110px !important; max-height: 110px !important; overflow: hidden !important; border-radius: 6px !important;">
-                    <img src="${product.image}" alt="${product.name}" loading="lazy" style="height: 100% !important; width: 100% !important; object-fit: cover !important;">
-                    ${badgeHTML}
-                    <button class="btn-wishlist ${isWishlisted ? 'active' : ''}" 
-                            onclick="event.stopPropagation(); toggleWishlist(${product.id})" 
-                            aria-label="Wishlist">
-                        <i class="${isWishlisted ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
-                    </button>
-                </div>
-                <div class="card-content" style="padding-top: 4px !important; gap: 1px !important;">
-                    <span class="product-category" style="font-size: 0.6rem !important; margin-bottom: 1px !important;">${product.category}</span>
-                    <h3 class="product-title" onclick="openProductModal(${product.id})" style="font-size: 0.75rem !important; line-height: 1.1 !important; margin: 1px 0 2px 0 !important; font-weight: 700;">${product.name}</h3>
-                    <div class="rating-stars" style="font-size: 0.6rem !important; margin-bottom: 2px !important;">
-                        ${getStarRatingHTML(product.rating)}
-                        <span class="rating-count" style="font-size: 0.6rem !important;">(${product.ratingCount})</span>
-                    </div>
-                    <p class="product-description" style="font-size: 0.65rem !important; line-height: 1.1 !important; margin: 0 0 4px 0 !important; color: #6b7280; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${product.description}</p>
-                    <div class="card-footer-price" style="margin-bottom: 4px !important;">
-                        <span class="current-price" style="font-size: 0.75rem !important; font-weight: 800;">${BUSINESS_CONFIG.currency}${product.price}</span>
-                        ${hasDiscount ? `<span class="old-price" style="font-size: 0.65rem !important; text-decoration: line-through; opacity: 0.6; margin-left: 4px;">${BUSINESS_CONFIG.currency}${product.oldPrice}</span>` : ''}
-                    </div>
-                    <div class="card-actions-grid" style="gap: 4px !important; margin-top: 2px !important;">
-                        ${actionButtonsHTML}
-                    </div>
-                </div>
+       return `
+    <div class="product-card" data-id="${product.id}" style="padding: 4px !important;">
+        <div class="card-image-wrap" onclick="openProductModal(${product.id})" style="height: 110px !important; min-height: 110px !important; max-height: 110px !important; overflow: hidden !important; border-radius: 6px !important;">
+            <img src="${product.image}" alt="${product.name}" loading="lazy" style="height: 100% !important; width: 100% !important; object-fit: cover !important;">
+            ${badgeHTML}
+            <button class="btn-wishlist ${isWishlisted ? 'active' : ''}" 
+                    onclick="event.stopPropagation(); toggleWishlist(${product.id})" 
+                    aria-label="Wishlist">
+                <i class="${isWishlisted ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+            </button>
+        </div>
+        <div class="card-content" style="padding-top: 2px !important; gap: 0px !important;">
+            <span class="product-category" style="font-size: 0.55rem !important; margin: 0 !important; line-height: 1 !important;">${product.category}</span>
+            <h3 class="product-title" onclick="openProductModal(${product.id})" style="font-size: 0.65rem !important; line-height: 1 !important; margin: 1px 0 !important; font-weight: 700;">${product.name}</h3>
+            <div class="rating-stars" style="font-size: 0.55rem !important; margin: 0 !important; line-height: 1 !important;">
+                ${getStarRatingHTML(product.rating)}
+                <span class="rating-count" style="font-size: 0.55rem !important;">(${product.ratingCount})</span>
             </div>
-        `;
+            <p class="product-description" style="font-size: 0.58rem !important; line-height: 1 !important; margin: 1px 0 !important; color: #6b7280; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${product.description}</p>
+            <div class="card-footer-price" style="margin: 1px 0 !important; line-height: 1 !important;">
+                <span class="current-price" style="font-size: 0.68rem !important; font-weight: 800;">${BUSINESS_CONFIG.currency}${product.price}</span>
+                ${hasDiscount ? `<span class="old-price" style="font-size: 0.55rem !important; text-decoration: line-through; opacity: 0.6; margin-left: 2px;">${BUSINESS_CONFIG.currency}${product.oldPrice}</span>` : ''}
+            </div>
+            <div class="card-actions-grid" style="gap: 2px !important; margin-top: 2px !important;">
+                ${actionButtonsHTML}
+            </div>
+        </div>
+    </div>
+`;    
     }).join('');
 }
 function getStarRatingHTML(rating) {
