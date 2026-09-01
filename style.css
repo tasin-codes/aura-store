@@ -1535,3 +1535,48 @@ button:disabled {
     padding: 4px 8px !important;
     font-size: 11px !important;
 }
+/* Product card outer layout & spacing */
+.product-card {
+    padding: 12px !important;
+    border-radius: 12px !important;
+}
+
+/* Image height optimization */
+.product-card img, 
+.product-image img {
+    height: 180px !important; /* ছবির পারফেক্ট সাইজ */
+    object-fit: cover !important;
+}
+
+/* Gap and text spacing */
+.product-card .product-info {
+    padding-top: 10px !important;
+    gap: 4px !important;
+}
+
+/* Category & Title spacing */
+.product-card span, 
+.product-category {
+    margin-bottom: 2px !important;
+}
+
+.product-card h3 {
+    margin: 4px 0 !important;
+    line-height: 1.25 !important;
+}
+
+/* Description 2-line clamp */
+.product-card p, 
+.product-description {
+    margin: 4px 0 10px 0 !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Price & Button row spacing */
+.product-card .price-row,
+.product-card .card-actions {
+    margin-top: 6px !important;
+}
