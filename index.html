@@ -62,27 +62,85 @@
             <li><a href="#contact" class="mobile-link">Contact</a></li>
         </ul>
     </aside>
-
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="container hero-container">
-            <div class="hero-content">
+     <!-- Live Hero Slider Section (5 Banner Slides) -->
+<section class="hero-slider-section" id="hero">
+    <div class="slider-container">
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <div class="slide-content">
                 <span class="hero-tag">NEW COLLECTION 2026</span>
                 <h1 class="hero-title">Find Your Vibe, Pick Your Favorite</h1>
                 <p class="hero-description">Effortless styles and quality products made to bring comfort and elegance to your daily routine.</p>
-                <div class="hero-buttons">
-                    <a href="#shop" class="btn btn-primary">Shop Collection <i class="fa-solid fa-arrow-right"></i></a>
-                    <a href="#about" class="btn btn-outline">Our Story</a>
-                </div>
+                <a href="#shop" class="btn btn-primary">Shop Collection <i class="fa-solid fa-arrow-right"></i></a>
             </div>
-            <div class="hero-visual">
-                <div class="hero-image-wrapper">
-                  <img src="hero-aura.png" alt="AURA STORE" class="hero-img"> 
-                </div>
+            <div class="slide-image">
+                <img src="hero-aura.png" alt="Aura Store Collection">
             </div>
         </div>
-    </section>
 
+        <!-- Slide 2 -->
+        <div class="slide">
+            <div class="slide-content">
+                <span class="hero-tag">EXCLUSIVE DROPS</span>
+                <h1 class="hero-title">Minimalist Gear for Modern Life</h1>
+                <p class="hero-description">Upgrade your daily carry with high-end aesthetic essentials designed for durability.</p>
+                <a href="#shop" class="btn btn-primary">Explore Drops <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="slide-image">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000&auto=format&fit=crop" alt="Minimalist Gear">
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <div class="slide-content">
+                <span class="hero-tag">LIMITED TIME OFFER</span>
+                <h1 class="hero-title">Premium Aesthetics, Best Prices</h1>
+                <p class="hero-description">Get up to 20% off on all trending minimalist accessories this week.</p>
+                <a href="#shop" class="btn btn-primary">Grab Offer <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="slide-image">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000&auto=format&fit=crop" alt="Special Offer">
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+            <div class="slide-content">
+                <span class="hero-tag">URBAN STYLE</span>
+                <h1 class="hero-title">Elevate Your Everyday Look</h1>
+                <p class="hero-description">Handpicked aesthetic pieces crafted with precision for your lifestyle.</p>
+                <a href="#shop" class="btn btn-primary">View Collection <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="slide-image">
+                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1000&auto=format&fit=crop" alt="Urban Style">
+            </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide">
+            <div class="slide-content">
+                <span class="hero-tag">BESTSELLERS</span>
+                <h1 class="hero-title">Timeless Essentials For You</h1>
+                <p class="hero-description">Discover our top rated customer favorites available now.</p>
+                <a href="#shop" class="btn btn-primary">Shop Bestsellers <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="slide-image">
+                <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=1000&auto=format&fit=crop" alt="Bestsellers">
+            </div>
+        </div>
+    </div>
+
+    <!-- 5 Navigation Dots -->
+    <div class="slider-dots">
+        <span class="dot active" onclick="currentSlide(0)"></span>
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+    </div>
+</section>
+   
     <!-- Main Shop Section -->
     <section class="shop-section" id="shop">
         <div class="container">
