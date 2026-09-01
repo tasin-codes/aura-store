@@ -734,3 +734,69 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
+// Toggle Payment Options Display (bKash & COD Only)
+function togglePaymentDetails(type) {
+    const bkashBox = document.getElementById('bkash-info');
+    if (!bkashBox) return;
+    
+    if (type === 'bkash') {
+        bkashBox.style.display = 'block';
+    } else {
+        bkashBox.style.display = 'none';
+    }
+}
+
+// Function to Generate Invoice and Show Confirmation Modal
+function generateInvoiceData(orderData) {
+    const randomID = Math.floor(100000 + Math.random() * 900000);
+    const today = new Date().toLocaleDateString('en-GB');
+
+    document.getElementById('invoice-id').innerText = `Order ID: #AURA-${randomID}`;
+    document.getElementById('invoice-date').innerText = `Date: ${today}`;
+    
+    document.getElementById('inv-cust-name').innerText = orderData.name;
+    document.getElementById('inv-cust-phone').innerText = orderData.phone;
+    document.getElementById('inv-cust-address').innerText = `${orderData.address}, ${orderData.city}`;
+    document.getElementById('inv-payment-method').innerText = orderData.paymentMethod;
+
+    // Show bKash Details in Invoice if bKash selected
+    const trxInfoElem = document.getElementById('inv-trx-info');
+    if (orderData.paymentMethod === 'bKash') {
+        trxInfoElem.innerText = `Sender: ${orderData.bkashNum || 'N/A'} | TrxID: ${orderData.trxId || 'N/A'}`;
+    } else {
+        trxInfoElem.innerText = 'Pay Cash Upon Receipt';
+    }
+
+    // Populate Invoice Items
+    const itemsBody = document.getElementById('inv-items-body');
+    if (itemsBody) {
+        itemsBody.innerHTML = '';
+        if (orderData.items && orderData.items.length > 0) {
+            orderData.items.forEach(item => {
+                const row = `
+                    <tr>
+                        <td style="padding: 8px; border-bottom: 1px solid #eee;">${item.name}</td>
+                        <td style="padding: 8px; border-bottom: 1px solid #eee; text-align: center;">${item.quantity}</td>
+                        <td style="padding: 8px; border-bottom: 1px solid #eee; text-align: right;">৳${item.price * item.quantity}</td>
+                    </tr>
+                `;
+                itemsBody.innerHTML += row;
+            });
+        }
+    }
+
+    document.getElementById('inv-subtotal').innerText = `৳${orderData.subtotal}`;
+    document.getElementById('inv-delivery').innerText = `৳${orderData.delivery}`;
+    document.getElementById('inv-total').innerText = `৳${orderData.total}`;
+}
+
+// Print / PDF Download Function for Invoice
+function printInvoice() {
+    const printContent = document.getElementById('printable-invoice').innerHTML;
+    const originalContent = document.body.innerHTML;
+
+    document.body.innerHTML = `<div style="padding: 30px;">${printContent}</div>`;
+    window.print();
+    document.body.innerHTML = originalContent;
+    window.location.reload();
+}
