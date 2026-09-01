@@ -1701,3 +1701,39 @@ div.product-card .card-actions {
     margin-top: 6px !important;
     padding: 6px 12px !important;
 }
+/* Card Content Flex Compression Fix */
+.product-card .card-content {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important; /* মাঝখানের ফাঁকা জায়গা ঠেলে দেওয়া বন্ধ করবে */
+    gap: 4px !important;
+    padding-top: 8px !important;
+}
+
+/* Category & Title gap */
+.product-card .product-category {
+    margin-bottom: 0 !important;
+}
+
+.product-card .product-title {
+    margin: 2px 0 !important;
+}
+
+/* Rating gap */
+.product-card .rating-stars {
+    margin-bottom: 2px !important;
+}
+
+/* Description margin */
+.product-card .product-description {
+    margin: 2px 0 6px 0 !important;
+}
+
+/* Price & Action alignment */
+.product-card .card-footer-price {
+    margin-bottom: 6px !important;
+}
+
+.product-card .card-actions-grid {
+    margin-top: 4px !important;
+}
