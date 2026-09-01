@@ -472,23 +472,34 @@ function handleCheckoutSubmit(e) {
     // =========================================================
 
     const emailParams = {
-        to_email: orderData.email,
-        customer_name: orderData.name,
-        order_id: orderData.orderId,
-        phone: orderData.phone,
-        email: orderData.email,
-        address: `${orderData.address}, ${orderData.city}`,
-        product: orderItems,
+    to_email: orderData.email,
+    to_name: orderData.name,
 
-        quantity: orderData.items.reduce(
-            (sum, item) => sum + item.quantity,
-            0
-        ),
+    customer_name: orderData.name,
+    order_id: orderData.orderId,
 
-        total: `${BUSINESS_CONFIG.currency}${orderData.total}`,
-        payment_method: "Cash on Delivery",
-        notes: orderData.notes
-    };
+    phone: orderData.phone,
+    email: orderData.email,
+
+    address: `${orderData.address}, ${orderData.city}`,
+
+    product: orderItems,
+
+    quantity: orderData.items.reduce(
+        (sum, item) => sum + item.quantity,
+        0
+    ),
+
+    subtotal: `${BUSINESS_CONFIG.currency}${orderData.subtotal}`,
+
+    delivery_charge: `${BUSINESS_CONFIG.currency}${orderData.deliveryCharge}`,
+
+    total: `${BUSINESS_CONFIG.currency}${orderData.total}`,
+
+    payment_method: "Cash on Delivery",
+
+    notes: orderData.notes
+};
 
 
     console.log("Sending order emails:", emailParams);
