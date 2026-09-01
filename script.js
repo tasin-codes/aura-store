@@ -446,6 +446,7 @@ function handleCheckoutSubmit(e) {
 
     const orderData = {
         orderId: 'ORD-' + Math.floor(100000 + Math.random() * 900000),
+
         name: document.getElementById('cust-name').value.trim(),
         phone: document.getElementById('cust-phone').value.trim(),
         email: document.getElementById('cust-email').value.trim(),
@@ -453,42 +454,82 @@ function handleCheckoutSubmit(e) {
         city: document.getElementById('cust-city').value.trim(),
         area: deliveryAreaSelect.value,
         notes: document.getElementById('cust-notes').value.trim(),
+
         items: [...cart],
         subtotal: calculateSubtotal(),
         deliveryCharge: getDeliveryCharge(),
         total: calculateSubtotal() + getDeliveryCharge()
     };
 
-    const orderItemsText = orderData.items.map((item, index) => {
+    // Cart items → readable text
+    const orderItems = orderData.items.map((item, index) => {
         return `${index + 1}. ${item.name} x${item.quantity} = ${BUSINESS_CONFIG.currency}${item.price * item.quantity}`;
     }).join('\n');
 
-    const totalQuantity = orderData.items.reduce((sum, item) => sum + item.quantity, 0);
 
-    const templateParams = {
-        order_id: orderData.orderId,
+    // ==========================================
+    // CUSTOMER EMAIL
+    // ==========================================
+
+    const customerEmailParams = {
+        to_email: orderData.email,
         customer_name: orderData.name,
+        order_id: orderData.orderId,
         phone: orderData.phone,
-        email: orderData.email,
         address: `${orderData.address}, ${orderData.city}`,
-        product: orderItemsText,
-        quantity: totalQuantity,
+        product: orderItems,
+
+        quantity: orderData.items.reduce(
+            (sum, item) => sum + item.quantity,
+            0
+        ),
+
         total: `${BUSINESS_CONFIG.currency}${orderData.total}`,
+
         payment_method: "Cash on Delivery",
-        notes: orderData.notes || "N/A"
+
+        notes: orderData.notes
     };
 
-    emailjs.send("service_xpo9pt9", "template_f9swdxh", templateParams)
-        .then(function(response) {
-            console.log("Order email sent successfully!", response.status, response.text);
-            showOrderConfirmation(orderData);
-            clearCart();
-            closeCheckout();
-        })
-        .catch(function(error) {
-            console.error("EmailJS Error:", error);
-            alert("Order submission failed. Please try again.");
-        });
+
+    console.log("Sending customer confirmation:", customerEmailParams);
+
+
+    // ==========================================
+    // SEND CUSTOMER EMAIL
+    // ==========================================
+
+    emailjs.send(
+        "service_xpo9pt9",
+        "template_tkdrcrs",
+        customerEmailParams
+    )
+    .then(function(response) {
+
+        console.log(
+            "Customer confirmation email sent!",
+            response.status,
+            response.text
+        );
+
+        // Show order confirmation on website
+        showOrderConfirmation(orderData);
+
+        // Clear cart
+        clearCart();
+
+        // Close checkout
+        closeCheckout();
+
+    })
+    .catch(function(error) {
+
+        console.error("Customer EmailJS Error:", error);
+
+        alert(
+            "Order could not be submitted. Please try again."
+        );
+    });
 }
 
 function generateWhatsAppMessage() {
