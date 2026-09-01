@@ -1633,3 +1633,50 @@ div.product-card .card-actions {
     margin-top: 4px !important;
     padding-top: 0 !important;
 }
+/* Product Card Layout Fix */
+.product-card {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 12px !important;
+}
+
+/* 1. Image height reduction */
+.product-card img {
+    height: 150px !important;
+    object-fit: cover !important;
+}
+
+/* 2. Container spacing override */
+.product-card > div,
+.product-card .product-info {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    padding: 6px 0 0 0 !important;
+    margin: 0 !important;
+}
+
+/* 3. Title spacing */
+.product-card h3 {
+    margin: 2px 0 !important;
+    font-size: 15px !important;
+    line-height: 1.2 !important;
+}
+
+/* 4. Description limit to 2 lines */
+.product-card p {
+    margin: 2px 0 6px 0 !important;
+    font-size: 12px !important;
+    line-height: 1.3 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+}
+
+/* 5. Buttons & Price alignment */
+.product-card .price-row,
+.product-card .card-actions {
+    margin-top: auto !important;
+    padding-top: 4px !important;
+}
