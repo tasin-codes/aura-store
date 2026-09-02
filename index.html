@@ -599,27 +599,27 @@
         }
     }
 </script>
- <!-- Track Order Modal -->
-<div class="modal-overlay" id="track-modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; justify-content:center; align-items:center;">
-    <div style="background:#fff; padding:25px; border-radius:12px; max-width:400px; width:90%; position:relative; font-family:sans-serif;">
-        <span onclick="closeTrackModal()" style="position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer; font-weight:bold;">&times;</span>
+<!-- Track Order Modal -->
+<div class="modal-overlay" id="track-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:99999; justify-content:center; align-items:center;">
+    <div style="background:#fff; padding:25px; border-radius:12px; max-width:400px; width:90%; position:relative; font-family:sans-serif; box-shadow:0 10px 25px rgba(0,0,0,0.2);">
+        <span onclick="closeTrackModal()" style="position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer; font-weight:bold; color:#333;">&times;</span>
         <h3 style="margin-top:0; color:#111; font-size:1.2rem;">Track Your Order</h3>
         <p style="color:#666; font-size:0.85rem; margin-bottom:15px;">Enter your Order ID and Phone Number to check current status via WhatsApp.</p>
         
         <div style="margin-bottom:12px;">
-            <label style="display:block; font-size:0.8rem; font-weight:600; margin-bottom:4px;">Order ID *</label>
-            <input type="text" id="track-order-id" placeholder="e.g. ORD-123456" style="width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; font-size:0.9rem;">
+            <label style="display:block; font-size:0.8rem; font-weight:600; margin-bottom:4px; color:#333;">Order ID *</label>
+            <input type="text" id="track-order-id" placeholder="e.g. ORD-123456" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; font-size:0.9rem; box-sizing:border-box;">
         </div>
         
         <div style="margin-bottom:15px;">
-            <label style="display:block; font-size:0.8rem; font-weight:600; margin-bottom:4px;">Phone Number *</label>
-            <input type="tel" id="track-phone" placeholder="e.g. 018XXXXXXXX" style="width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; font-size:0.9rem;">
+            <label style="display:block; font-size:0.8rem; font-weight:600; margin-bottom:4px; color:#333;">Phone Number *</label>
+            <input type="tel" id="track-phone" placeholder="e.g. 018XXXXXXXX" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; font-size:0.9rem; box-sizing:border-box;">
         </div>
 
-        <button onclick="sendTrackWhatsApp()" class="btn btn-primary" style="width:100%; padding:10px; font-size:0.9rem; background:#25D366; border:none; color:white; border-radius:6px; font-weight:600; cursor:pointer;">
-            <i class="fa-brands fa-whatsapp"></i> Track via WhatsApp
+        <button onclick="sendTrackWhatsApp()" style="width:100%; padding:12px; font-size:0.95rem; background:#25D366; border:none; color:white; border-radius:6px; font-weight:600; cursor:pointer;">
+            Track via WhatsApp
         </button>
     </div>
-</div>   
+</div> 
 </body>
 </html>
