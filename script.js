@@ -807,7 +807,7 @@ function openTrackModal() {
     if (modal) {
         modal.style.display = 'flex';
     }
-    // মোবাইল ড্রয়ার মেনু খোলা থাকলে তা বন্ধ করে দেবে
+    // মোবাইল ড্রয়ার ও ওভারলে থাকলে বন্ধ করবে
     const mobileOverlay = document.getElementById('mobile-nav-overlay');
     const mobileDrawer = document.getElementById('mobile-nav-drawer');
     if (mobileOverlay) mobileOverlay.classList.remove('active');
@@ -842,3 +842,13 @@ function sendTrackWhatsApp() {
     window.open(whatsappURL, '_blank');
     closeTrackModal();
 }
+
+// Event Listeners setup for Track Order Links
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('a[href*="openTrackModal"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            openTrackModal();
+        });
+    });
+});
