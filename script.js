@@ -803,11 +803,11 @@ function printInvoice() {
    TRACK ORDER SYSTEM VIA WHATSAPP
    ========================================================================== */
 function openTrackModal() {
-    const modal = document.getElementById('track-modal-overlay');
+    const modal = document.getElementById('track-modal');
     if (modal) {
         modal.style.display = 'flex';
     }
-    // মোবাইল ড্রয়ার ও ওভারলে থাকলে বন্ধ করবে
+    // মোবাইল ড্রয়ার অটো বন্ধ করার জন্য
     const mobileOverlay = document.getElementById('mobile-nav-overlay');
     const mobileDrawer = document.getElementById('mobile-nav-drawer');
     if (mobileOverlay) mobileOverlay.classList.remove('active');
@@ -815,7 +815,7 @@ function openTrackModal() {
 }
 
 function closeTrackModal() {
-    const modal = document.getElementById('track-modal-overlay');
+    const modal = document.getElementById('track-modal');
     if (modal) {
         modal.style.display = 'none';
     }
@@ -842,13 +842,3 @@ function sendTrackWhatsApp() {
     window.open(whatsappURL, '_blank');
     closeTrackModal();
 }
-
-// Event Listeners setup for Track Order Links
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('a[href*="openTrackModal"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            openTrackModal();
-        });
-    });
-});
