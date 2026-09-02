@@ -311,6 +311,147 @@
                 </div>
             </div>
 
+            <!-- Track Order Modal -->
+<div id="track-modal" style="
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+">
+
+    <div style="
+        background: #ffffff;
+        color: #222;
+        max-width: 500px;
+        width: 100%;
+        padding: 30px;
+        border-radius: 16px;
+        position: relative;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+        font-family: sans-serif;
+    ">
+
+        <!-- Close Button -->
+        <button
+            type="button"
+            onclick="closeTrackModal()"
+            style="
+                position: absolute;
+                top: 12px;
+                right: 15px;
+                border: none;
+                background: none;
+                font-size: 28px;
+                cursor: pointer;
+                color: #666;
+            "
+        >
+            &times;
+        </button>
+
+        <h2 style="
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.6rem;
+            color: #111;
+        ">
+            Track Your Order
+        </h2>
+
+        <p style="
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 22px;
+        ">
+            Enter your Order ID and phone number to contact us about your order.
+        </p>
+
+        <!-- Order ID -->
+        <div style="margin-bottom: 15px;">
+            <label
+                for="track-order-id"
+                style="
+                    display: block;
+                    font-weight: 600;
+                    margin-bottom: 6px;
+                "
+            >
+                Order ID
+            </label>
+
+            <input
+                type="text"
+                id="track-order-id"
+                placeholder="e.g. ORD-123456"
+                style="
+                    width: 100%;
+                    padding: 12px;
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                    font-size: 14px;
+                    box-sizing: border-box;
+                "
+            >
+        </div>
+
+        <!-- Phone Number -->
+        <div style="margin-bottom: 20px;">
+            <label
+                for="track-phone"
+                style="
+                    display: block;
+                    font-weight: 600;
+                    margin-bottom: 6px;
+                "
+            >
+                Phone Number
+            </label>
+
+            <input
+                type="tel"
+                id="track-phone"
+                placeholder="e.g. 018XXXXXXXX"
+                style="
+                    width: 100%;
+                    padding: 12px;
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                    font-size: 14px;
+                    box-sizing: border-box;
+                "
+            >
+        </div>
+
+        <!-- WhatsApp Button -->
+        <button
+            type="button"
+            onclick="sendTrackWhatsApp()"
+            style="
+                width: 100%;
+                padding: 13px;
+                border: none;
+                border-radius: 8px;
+                background: #25D366;
+                color: white;
+                font-size: 15px;
+                font-weight: 700;
+                cursor: pointer;
+            "
+        >
+            <i class="fa-brands fa-whatsapp"></i>
+            Track Order via WhatsApp
+        </button>
+
+    </div>
+</div>
+
             <div class="footer-newsletter">
                 <h4>Newsletter</h4>
                 <p>Subscribe for updates and exclusive discount drops.</p>
