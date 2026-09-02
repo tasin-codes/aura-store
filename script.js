@@ -803,11 +803,22 @@ function printInvoice() {
    TRACK ORDER SYSTEM VIA WHATSAPP
    ========================================================================== */
 function openTrackModal() {
-    document.getElementById('track-modal-overlay').style.display = 'flex';
+    const modal = document.getElementById('track-modal-overlay');
+    if (modal) {
+        modal.style.display = 'flex';
+    }
+    // মোবাইল ড্রয়ার মেনু খোলা থাকলে তা বন্ধ করে দেবে
+    const mobileOverlay = document.getElementById('mobile-nav-overlay');
+    const mobileDrawer = document.getElementById('mobile-nav-drawer');
+    if (mobileOverlay) mobileOverlay.classList.remove('active');
+    if (mobileDrawer) mobileDrawer.classList.remove('active');
 }
 
 function closeTrackModal() {
-    document.getElementById('track-modal-overlay').style.display = 'none';
+    const modal = document.getElementById('track-modal-overlay');
+    if (modal) {
+        modal.style.display = 'none';
+    }
 }
 
 function sendTrackWhatsApp() {
@@ -826,8 +837,6 @@ function sendTrackWhatsApp() {
     message += `Hello, I want to track my order status. Please update me!`;
 
     const encodedMessage = encodeURIComponent(message);
-    
-    // আপনার ফোন নাম্বার দিয়ে তৈরি সরাসরি WhatsApp URL
     const whatsappURL = `https://wa.me/8801619427099?text=${encodedMessage}`;
     
     window.open(whatsappURL, '_blank');
