@@ -799,3 +799,37 @@ function printInvoice() {
     document.body.innerHTML = originalContent;
     window.location.reload();
 }
+/* ==========================================================================
+   TRACK ORDER SYSTEM VIA WHATSAPP
+   ========================================================================== */
+function openTrackModal() {
+    document.getElementById('track-modal-overlay').style.display = 'flex';
+}
+
+function closeTrackModal() {
+    document.getElementById('track-modal-overlay').style.display = 'none';
+}
+
+function sendTrackWhatsApp() {
+    const orderId = document.getElementById('track-order-id').value.trim();
+    const phone = document.getElementById('track-phone').value.trim();
+
+    if (!orderId || !phone) {
+        alert("Please enter both Order ID and Phone Number.");
+        return;
+    }
+
+    let message = `*ORDER TRACKING REQUEST*\n`;
+    message += `------------------------------\n`;
+    message += `*Order ID:* ${orderId}\n`;
+    message += `*Customer Phone:* ${phone}\n\n`;
+    message += `Hello, I want to track my order status. Please update me!`;
+
+    const encodedMessage = encodeURIComponent(message);
+    
+    // আপনার ফোন নাম্বার দিয়ে তৈরি সরাসরি WhatsApp URL
+    const whatsappURL = `https://wa.me/8801619427099?text=${encodedMessage}`;
+    
+    window.open(whatsappURL, '_blank');
+    closeTrackModal();
+}
