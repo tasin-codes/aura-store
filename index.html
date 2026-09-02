@@ -577,6 +577,9 @@
             `
         }
     };
+/* ==========================================================================
+       MODAL SYSTEM (POLICY & TRACK ORDER)
+       ========================================================================== */
     function openPolicyModal(type) {
         if (policyDetails[type]) {
             document.getElementById('modal-title').innerText = policyDetails[type].title;
@@ -591,24 +594,25 @@
         document.body.style.overflow = 'auto';
     }
 
-    window.onclick = function(event) {
-        const modal = document.getElementById('policy-modal');
-        if (event.target === modal) {
-            closePolicyModal();
-        }
-    }
-
     function openTrackModal() {
-        document.getElementById('track-modal').style.display = 'flex';
+        const modal = document.getElementById('track-modal');
+        if (modal) {
+            modal.style.display = 'flex';
+        }
+        // মোবাইল ড্রয়ার মেনু খোলা থাকলে বন্ধ হবে
+        const mobileOverlay = document.getElementById('mobile-nav-overlay');
+        const mobileDrawer = document.getElementById('mobile-nav-drawer');
+        if (mobileOverlay) mobileOverlay.classList.remove('active');
+        if (mobileDrawer) mobileDrawer.classList.remove('active');
     }
 
     function closeTrackModal() {
-        document.getElementById('track-modal').style.display = 'none';
+        const modal = document.getElementById('track-modal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
     }
 
-    /* ==========================================================================
-       TRACK ORDER SYSTEM VIA WHATSAPP
-       ========================================================================== */
     function sendTrackWhatsApp() {
         const orderId = document.getElementById('track-order-id').value.trim();
         const phone = document.getElementById('track-phone').value.trim();
@@ -630,8 +634,18 @@
         window.open(whatsappURL, '_blank');
         closeTrackModal();
     }
+
+    window.onclick = function(event) {
+        const policyModal = document.getElementById('policy-modal');
+        const trackModal = document.getElementById('track-modal');
+        if (event.target === policyModal) {
+            closePolicyModal();
+        }
+        if (event.target === trackModal) {
+            closeTrackModal();
+        }
+    }
 </script>
 
 </body>
 </html>
-    
