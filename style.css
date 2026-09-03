@@ -1898,25 +1898,34 @@ div.product-card .card-actions {
     padding: 2px 4px !important;
     font-size: 0.65rem !important;
 }
-/* AURA STORE Brand */
-.logo {
-    font-size: 1.6rem;
-    font-weight: 800;
+/* ================================
+   AURA STORE BRAND LOGO
+   ================================ */
+
+.brand-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.65rem;
+    font-weight: 700;
     letter-spacing: 3px;
     text-decoration: none;
+    color: #111;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.brand-logo .accent-text {
     background: linear-gradient(90deg, #111, #777, #111);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: auraBrand 4s linear infinite;
-    transition: transform 0.3s ease;
+    animation: auraBrandShine 4s linear infinite;
 }
 
-.logo:hover {
+.brand-logo:hover {
     transform: scale(1.05);
 }
 
-@keyframes auraBrand {
+@keyframes auraBrandShine {
     0% {
         background-position: 0% center;
     }
