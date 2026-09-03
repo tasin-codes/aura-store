@@ -1898,47 +1898,30 @@ div.product-card .card-actions {
     padding: 2px 4px !important;
     font-size: 0.65rem !important;
 }
-/* Sailor Style Glow & Typography for Logo */
-.brand-logo {
-    font-family: 'Cinzel', serif;
+/* AURA STORE Brand */
+.logo {
     font-size: 1.6rem;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 3px;
-    color: #2c3e50;
-    text-transform: uppercase;
     text-decoration: none;
-    transition: all 0.4s ease-in-out;
+    background: linear-gradient(90deg, #111, #777, #111);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: auraBrand 4s linear infinite;
+    transition: transform 0.3s ease;
 }
 
-.brand-logo:hover {
-    color: #1a252f;
-    text-shadow: 0 0 10px rgba(231, 76, 60, 0.5), 
-                 0 0 20px rgba(231, 76, 60, 0.3);
+.logo:hover {
+    transform: scale(1.05);
 }
 
-.brand-logo .accent-text {
-    color: #e74c3c;
-    font-weight: 600;
-}
-/* Sailor Style Glow & Typography for Logo */
-.brand-logo {
-    font-family: 'Cinzel', serif;
-    font-size: 1.6rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    color: #2c3e50;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.4s ease-in-out;
-}
+@keyframes auraBrand {
+    0% {
+        background-position: 0% center;
+    }
 
-.brand-logo:hover {
-    color: #1a252f;
-    text-shadow: 0 0 10px rgba(231, 76, 60, 0.5), 
-                 0 0 20px rgba(231, 76, 60, 0.3);
-}
-
-.brand-logo .accent-text {
-    color: #e74c3c;
-    font-weight: 600;
+    100% {
+        background-position: 200% center;
+    }
 }
