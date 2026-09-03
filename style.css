@@ -1920,3 +1920,25 @@ div.product-card .card-actions {
     color: #e74c3c;
     font-weight: 600;
 }
+/* Sailor Style Glow & Typography for Logo */
+.brand-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #2c3e50;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.4s ease-in-out;
+}
+
+.brand-logo:hover {
+    color: #1a252f;
+    text-shadow: 0 0 10px rgba(231, 76, 60, 0.5), 
+                 0 0 20px rgba(231, 76, 60, 0.3);
+}
+
+.brand-logo .accent-text {
+    color: #e74c3c;
+    font-weight: 600;
+}
