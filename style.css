@@ -2025,131 +2025,193 @@ div.product-card .card-actions {
         opacity: 0;
     }
 }
-/* ==========================================================================
-   THE AURA EDIT SECTION
-   ========================================================================== */
+/* =========================================
+   AURA EDIT - CASUAL & AESTHETIC
+   ========================================= */
+
 .aura-edit-section {
-    padding: 70px 20px;
-    background-color: #faf9f6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 90px 20px;
+    background: #fafafa;
 }
 
 .aura-edit-container {
-    max-width: 1000px;
-    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-    text-align: center;
+
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: 70px;
+}
+
+
+/* IMAGE */
+
+.aura-edit-image {
+    width: 100%;
+    height: 520px;
+    overflow: hidden;
+    border-radius: 22px;
+}
+
+.aura-edit-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    transition: transform 0.6s ease;
+}
+
+.aura-edit-image:hover img {
+    transform: scale(1.04);
+}
+
+
+/* CONTENT */
+
+.aura-edit-content {
+    max-width: 540px;
 }
 
 .aura-edit-tag {
     display: inline-block;
-    font-size: 0.75rem;
+
+    margin-bottom: 18px;
+
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 2.5px;
-    color: #e74c3c;
-    text-transform: uppercase;
-    margin-bottom: 12px;
+    letter-spacing: 3px;
+
+    color: #777;
 }
 
-.aura-edit-title {
-    font-family: 'Cinzel', serif;
-    font-size: 2.2rem;
+.aura-edit-content h2 {
+    margin: 0 0 22px;
+
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    line-height: 1.08;
+
     font-weight: 700;
-    color: #1a252f;
-    margin-bottom: 16px;
-    line-height: 1.3;
+    letter-spacing: -1.5px;
+
+    color: #111;
 }
 
 .aura-edit-desc {
-    font-size: 1.02rem;
-    color: #5a6578;
-    max-width: 620px;
-    margin: 0 auto 45px auto;
-    line-height: 1.6;
-    font-weight: 400;
+    max-width: 520px;
+
+    margin: 0 0 35px;
+
+    font-size: 16px;
+    line-height: 1.8;
+
+    color: #666;
 }
 
-.aura-edit-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
-    margin-bottom: 45px;
+
+/* FEATURES */
+
+.aura-features {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    margin-bottom: 35px;
 }
 
-.aura-edit-card {
-    background: #ffffff;
-    padding: 30px 25px;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-    border: 1px solid rgba(0, 0, 0, 0.04);
-    text-align: left;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.aura-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
 }
 
-.aura-edit-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+.aura-feature > span {
+    font-size: 17px;
+    color: #111;
+    margin-top: 2px;
 }
 
-.aura-edit-icon {
-    font-size: 1.1rem;
-    color: #e74c3c;
-    display: inline-block;
-    margin-bottom: 12px;
+.aura-feature h3 {
+    margin: 0 0 4px;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    color: #111;
 }
 
-.aura-edit-card h3 {
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: #1a252f;
-    margin-bottom: 8px;
-}
-
-.aura-edit-card p {
-    font-size: 0.92rem;
-    color: #6c7a89;
-    line-height: 1.5;
+.aura-feature p {
     margin: 0;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    color: #777;
 }
 
-.aura-edit-action {
-    margin-top: 10px;
-}
+
+/* BUTTON */
 
 .aura-edit-btn {
-    display: inline-block;
-    padding: 14px 32px;
-    background-color: #1a252f;
-    color: #ffffff !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 14px 24px;
+
+    background: #111;
+    color: #fff !important;
+
+    border-radius: 8px;
+
     text-decoration: none;
-    font-size: 0.95rem;
+
+    font-size: 14px;
     font-weight: 600;
-    border-radius: 30px;
-    letter-spacing: 0.5px;
+
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(26, 37, 47, 0.15);
 }
 
 .aura-edit-btn:hover {
-    background-color: #e74c3c;
+    background: #333;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.25);
 }
 
+.aura-edit-btn i {
+    transition: transform 0.3s ease;
+}
+
+.aura-edit-btn:hover i {
+    transform: translateX(4px);
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
 @media (max-width: 768px) {
+
     .aura-edit-section {
-        padding: 50px 16px;
+        padding: 65px 20px;
     }
-    .aura-edit-title {
-        font-size: 1.75rem;
+
+    .aura-edit-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
     }
+
+    .aura-edit-image {
+        height: 400px;
+        border-radius: 18px;
+    }
+
+    .aura-edit-content h2 {
+        font-size: 2.5rem;
+    }
+
     .aura-edit-desc {
-        font-size: 0.95rem;
-        margin-bottom: 35px;
-    }
-    .aura-edit-card {
-        padding: 22px 20px;
+        font-size: 15px;
     }
 }
