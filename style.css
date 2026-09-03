@@ -1898,40 +1898,130 @@ div.product-card .card-actions {
     padding: 2px 4px !important;
     font-size: 0.65rem !important;
 }
-/* ================================
-   AURA STORE - LIVE BLACK & WHITE
-   ================================ */
+/* =========================================
+   AURA STORE - LIVE SCAN LINE EFFECT
+   ========================================= */
 
 .brand-logo {
+    position: relative;
+    display: inline-block;
+
     font-family: 'Cinzel', serif;
     font-size: 1.65rem;
     font-weight: 700;
     letter-spacing: 3px;
-    text-decoration: none;
-    display: inline-block;
 
-    color: #000;
-    animation: auraBlackWhite 1.2s infinite alternate;
+    color: #111;
+    text-decoration: none;
+
+    /* Text stays black */
+    background: linear-gradient(
+        90deg,
+        #111 0%,
+        #111 40%,
+        #fff 50%,
+        #111 60%,
+        #111 100%
+    );
+
+    background-size: 250% 100%;
+    background-position: 100% 0;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: auraTextScan 1.4s linear infinite;
+
+    overflow: visible;
 }
 
-/* Make STORE follow the same animation */
+
+/* STORE follows the same effect */
 .brand-logo .accent-text {
     color: inherit;
     background: none;
-    -webkit-text-fill-color: currentColor;
+    -webkit-text-fill-color: inherit;
 }
 
-/* Fast Black ↔ White effect */
-@keyframes auraBlackWhite {
-    0% {
-        color: #000000;
-    }
 
-    50% {
-        color: #ffffff;
+/* =========================================
+   LIVE LIGHT LINE
+   ========================================= */
+
+.brand-logo::after {
+    content: "";
+
+    position: absolute;
+
+    left: -15%;
+    top: 50%;
+
+    width: 130%;
+    height: 2px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.2),
+        #ffffff,
+        rgba(255,255,255,0.2),
+        transparent
+    );
+
+    box-shadow:
+        0 0 4px rgba(255,255,255,0.9),
+        0 0 10px rgba(255,255,255,0.7);
+
+    transform: translateX(-120%) rotate(-3deg);
+
+    animation: auraLineScan 1.4s linear infinite;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   TEXT COLOR CHANGE
+   ========================================= */
+
+@keyframes auraTextScan {
+
+    0% {
+        background-position: 120% 0;
     }
 
     100% {
-        color: #000000;
+        background-position: -120% 0;
+    }
+}
+
+
+/* =========================================
+   LINE MOVEMENT
+   ========================================= */
+
+@keyframes auraLineScan {
+
+    0% {
+        transform: translateX(-120%) rotate(-3deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(120%) rotate(-3deg);
+        opacity: 0;
     }
 }
