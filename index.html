@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=2.0">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
- 
 </head>
 <body>
 
@@ -24,9 +23,9 @@
     <!-- Navigation Header -->
     <header class="header">
         <div class="container nav-container">
-           <a href="#" class="brand-logo" id="brand-logo-text">
-    AURA <span class="accent-text">STORE</span>
-</a>
+            <a href="#" class="brand-logo" id="brand-logo-text">
+                AURA <span class="accent-text">STORE</span>
+            </a>
 
             <nav class="nav-menu" id="nav-menu">
                 <a href="#hero" class="nav-link active">Home</a>
@@ -37,6 +36,16 @@
             </nav>
 
             <div class="nav-actions">
+                <!-- User Account Dropdown -->
+                <div class="user-menu-wrapper" style="position: relative;">
+                    <button class="icon-btn" id="user-menu-btn" aria-label="User Account">
+                        <i class="fa-regular fa-user"></i>
+                    </button>
+                    <div class="user-dropdown-menu" id="user-dropdown">
+                        <!-- Dynamic Auth Menu Items -->
+                    </div>
+                </div>
+
                 <button class="icon-btn" id="wishlist-btn" aria-label="Wishlist">
                     <i class="fa-regular fa-heart"></i>
                     <span class="badge" id="wishlist-count">0</span>
@@ -57,8 +66,8 @@
     <aside class="mobile-nav-drawer" id="mobile-nav-drawer">
         <div class="mobile-nav-header">
             <span class="brand-logo" id="mobile-brand-logo">
-    AURA <span class="accent-text">STORE</span>
-</span>
+                AURA <span class="accent-text">STORE</span>
+            </span>
             <button class="close-btn" id="mobile-nav-close"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <ul class="mobile-nav-links">
@@ -67,87 +76,91 @@
             <li><a href="#about" class="mobile-link">About Us</a></li>
             <li><a href="#contact" class="mobile-link">Contact</a></li>
             <li><a href="javascript:void(0)" onclick="openTrackModal()" class="mobile-link">Track Order</a></li>
+            <li id="mobile-auth-link-container">
+                <a href="javascript:void(0)" onclick="openAuthModal('login')" class="mobile-link"><i class="fa-solid fa-right-to-bracket"></i> Login / Register</a>
+            </li>
         </ul>
     </aside>
-     <!-- Live Hero Slider Section (5 Banner Slides) -->
-<section class="hero-slider-section" id="hero">
-    <div class="slider-container">
-        <!-- Slide 1 -->
-        <div class="slide active">
-            <div class="slide-content">
-                <span class="hero-tag">NEW COLLECTION 2026</span>
-                <h1 class="hero-title">Find Your Vibe, Pick Your Favorite</h1>
-                <p class="hero-description">Effortless styles and quality products made to bring comfort and elegance to your daily routine.</p>
-                <a href="#shop" class="btn btn-primary">Shop Collection <i class="fa-solid fa-arrow-right"></i></a>
+
+    <!-- Live Hero Slider Section (5 Banner Slides) -->
+    <section class="hero-slider-section" id="hero">
+        <div class="slider-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <div class="slide-content">
+                    <span class="hero-tag">NEW COLLECTION 2026</span>
+                    <h1 class="hero-title">Find Your Vibe, Pick Your Favorite</h1>
+                    <p class="hero-description">Effortless styles and quality products made to bring comfort and elegance to your daily routine.</p>
+                    <a href="#shop" class="btn btn-primary">Shop Collection <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="slide-image">
+                    <img src="hero-aura.png" alt="Aura Store Collection">
+                </div>
             </div>
-            <div class="slide-image">
-                <img src="hero-aura.png" alt="Aura Store Collection">
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <div class="slide-content">
+                    <span class="hero-tag">EXCLUSIVE DROPS</span>
+                    <h1 class="hero-title">Minimalist Gear for Modern Life</h1>
+                    <p class="hero-description">Upgrade your daily carry with high-end aesthetic essentials designed for durability.</p>
+                    <a href="#shop" class="btn btn-primary">Explore Drops <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="slide-image">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000&auto=format&fit=crop" alt="Minimalist Gear">
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <div class="slide-content">
+                    <span class="hero-tag">LIMITED TIME OFFER</span>
+                    <h1 class="hero-title">Premium Aesthetics, Best Prices</h1>
+                    <p class="hero-description">Get up to 20% off on all trending minimalist accessories this week.</p>
+                    <a href="#shop" class="btn btn-primary">Grab Offer <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="slide-image">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000&auto=format&fit=crop" alt="Special Offer">
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <div class="slide-content">
+                    <span class="hero-tag">URBAN STYLE</span>
+                    <h1 class="hero-title">Elevate Your Everyday Look</h1>
+                    <p class="hero-description">Handpicked aesthetic pieces crafted with precision for your lifestyle.</p>
+                    <a href="#shop" class="btn btn-primary">View Collection <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="slide-image">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1000&auto=format&fit=crop" alt="Urban Style">
+                </div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="slide">
+                <div class="slide-content">
+                    <span class="hero-tag">BESTSELLERS</span>
+                    <h1 class="hero-title">Timeless Essentials For You</h1>
+                    <p class="hero-description">Discover our top rated customer favorites available now.</p>
+                    <a href="#shop" class="btn btn-primary">Shop Bestsellers <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="slide-image">
+                    <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=1000&auto=format&fit=crop" alt="Bestsellers">
+                </div>
             </div>
         </div>
 
-        <!-- Slide 2 -->
-        <div class="slide">
-            <div class="slide-content">
-                <span class="hero-tag">EXCLUSIVE DROPS</span>
-                <h1 class="hero-title">Minimalist Gear for Modern Life</h1>
-                <p class="hero-description">Upgrade your daily carry with high-end aesthetic essentials designed for durability.</p>
-                <a href="#shop" class="btn btn-primary">Explore Drops <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-            <div class="slide-image">
-                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000&auto=format&fit=crop" alt="Minimalist Gear">
-            </div>
+        <!-- 5 Navigation Dots -->
+        <div class="slider-dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
         </div>
+    </section>
 
-        <!-- Slide 3 -->
-        <div class="slide">
-            <div class="slide-content">
-                <span class="hero-tag">LIMITED TIME OFFER</span>
-                <h1 class="hero-title">Premium Aesthetics, Best Prices</h1>
-                <p class="hero-description">Get up to 20% off on all trending minimalist accessories this week.</p>
-                <a href="#shop" class="btn btn-primary">Grab Offer <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-            <div class="slide-image">
-                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000&auto=format&fit=crop" alt="Special Offer">
-            </div>
-        </div>
-
-        <!-- Slide 4 -->
-        <div class="slide">
-            <div class="slide-content">
-                <span class="hero-tag">URBAN STYLE</span>
-                <h1 class="hero-title">Elevate Your Everyday Look</h1>
-                <p class="hero-description">Handpicked aesthetic pieces crafted with precision for your lifestyle.</p>
-                <a href="#shop" class="btn btn-primary">View Collection <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-            <div class="slide-image">
-                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1000&auto=format&fit=crop" alt="Urban Style">
-            </div>
-        </div>
-
-        <!-- Slide 5 -->
-        <div class="slide">
-            <div class="slide-content">
-                <span class="hero-tag">BESTSELLERS</span>
-                <h1 class="hero-title">Timeless Essentials For You</h1>
-                <p class="hero-description">Discover our top rated customer favorites available now.</p>
-                <a href="#shop" class="btn btn-primary">Shop Bestsellers <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-            <div class="slide-image">
-                <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=1000&auto=format&fit=crop" alt="Bestsellers">
-            </div>
-        </div>
-    </div>
-
-    <!-- 5 Navigation Dots -->
-    <div class="slider-dots">
-        <span class="dot active" onclick="currentSlide(0)"></span>
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
-        <span class="dot" onclick="currentSlide(4)"></span>
-    </div>
-</section>
-   
     <!-- Main Shop Section -->
     <section class="shop-section" id="shop">
         <div class="container">
@@ -168,7 +181,6 @@
                         <label for="category-select">Category:</label>
                         <select id="category-select" class="custom-select">
                             <option value="all">All Categories</option>
-                            <!-- Dynamic Categories -->
                         </select>
                     </div>
 
@@ -198,8 +210,7 @@
             </div>
         </div>
     </section>
-    
-    
+
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="container">
@@ -241,7 +252,7 @@
                     <a href="https://facebook.com/zahid.binazam" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="https://instagram.com/@onlyfor_tasin" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="+8801861403911" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://wa.me/8801861403911" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
 
@@ -255,7 +266,7 @@
                 </ul>
             </div>
 
-           <div class="footer-links-group">
+            <div class="footer-links-group">
                 <h4>Customer Care</h4>
                 <ul>
                     <li><a href="javascript:void(0)" onclick="openPolicyModal('shipping')">Shipping Policy</a></li>
@@ -264,156 +275,6 @@
                     <li><a href="javascript:void(0)" onclick="openPolicyModal('privacy')">Privacy Policy</a></li>
                 </ul>
             </div>
-
-            <!-- Policy Modal (Pop-up Window) -->
-            <div id="policy-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
-                <div style="background: #ffffff; color: #222; max-width: 650px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 30px; border-radius: 12px; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.2); font-family: sans-serif;">
-                    <span onclick="closePolicyModal()" style="position: absolute; top: 15px; right: 20px; font-size: 26px; cursor: pointer; font-weight: bold; color: #666;">&times;</span>
-                    <h2 id="modal-title" style="margin-top: 0; font-size: 1.6rem; color: #111; border-bottom: 2px solid #eee; padding-bottom: 10px;"></h2>
-                    <div id="modal-body" style="line-height: 1.7; font-size: 0.95rem; color: #444; margin-top: 15px;"></div>
-                </div>
-            </div>
-
-            <!-- Track Order Modal -->
-<div id="track-modal" style="
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
-    z-index: 9999;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-">
-
-    <div style="
-        background: #ffffff;
-        color: #222;
-        max-width: 500px;
-        width: 100%;
-        padding: 30px;
-        border-radius: 16px;
-        position: relative;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-        font-family: sans-serif;
-    ">
-
-        <!-- Close Button -->
-        <button
-            type="button"
-            onclick="closeTrackModal()"
-            style="
-                position: absolute;
-                top: 12px;
-                right: 15px;
-                border: none;
-                background: none;
-                font-size: 28px;
-                cursor: pointer;
-                color: #666;
-            "
-        >
-            &times;
-        </button>
-
-        <h2 style="
-            margin-top: 0;
-            margin-bottom: 8px;
-            font-size: 1.6rem;
-            color: #111;
-        ">
-            Track Your Order
-        </h2>
-
-        <p style="
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 22px;
-        ">
-            Enter your Order ID and phone number to contact us about your order.
-        </p>
-
-        <!-- Order ID -->
-        <div style="margin-bottom: 15px;">
-            <label
-                for="track-order-id"
-                style="
-                    display: block;
-                    font-weight: 600;
-                    margin-bottom: 6px;
-                "
-            >
-                Order ID
-            </label>
-
-            <input
-                type="text"
-                id="track-order-id"
-                placeholder="e.g. ORD-123456"
-                style="
-                    width: 100%;
-                    padding: 12px;
-                    border: 1px solid #ddd;
-                    border-radius: 8px;
-                    font-size: 14px;
-                    box-sizing: border-box;
-                "
-            >
-        </div>
-
-        <!-- Phone Number -->
-        <div style="margin-bottom: 20px;">
-            <label
-                for="track-phone"
-                style="
-                    display: block;
-                    font-weight: 600;
-                    margin-bottom: 6px;
-                "
-            >
-                Phone Number
-            </label>
-
-            <input
-                type="tel"
-                id="track-phone"
-                placeholder="e.g. 018XXXXXXXX"
-                style="
-                    width: 100%;
-                    padding: 12px;
-                    border: 1px solid #ddd;
-                    border-radius: 8px;
-                    font-size: 14px;
-                    box-sizing: border-box;
-                "
-            >
-        </div>
-
-        <!-- WhatsApp Button -->
-        <button
-            type="button"
-            onclick="sendTrackWhatsApp()"
-            style="
-                width: 100%;
-                padding: 13px;
-                border: none;
-                border-radius: 8px;
-                background: #25D366;
-                color: white;
-                font-size: 15px;
-                font-weight: 700;
-                cursor: pointer;
-            "
-        >
-            <i class="fa-brands fa-whatsapp"></i>
-            Track Order via WhatsApp
-        </button>
-
-    </div>
-</div>
 
             <div class="footer-newsletter">
                 <h4>Newsletter</h4>
@@ -430,6 +291,141 @@
             </div>
         </div>
     </footer>
+
+    <!-- Policy Modal -->
+    <div id="policy-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
+        <div style="background: #ffffff; color: #222; max-width: 650px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 30px; border-radius: 12px; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.2); font-family: sans-serif;">
+            <span onclick="closePolicyModal()" style="position: absolute; top: 15px; right: 20px; font-size: 26px; cursor: pointer; font-weight: bold; color: #666;">&times;</span>
+            <h2 id="modal-title" style="margin-top: 0; font-size: 1.6rem; color: #111; border-bottom: 2px solid #eee; padding-bottom: 10px;"></h2>
+            <div id="modal-body" style="line-height: 1.7; font-size: 0.95rem; color: #444; margin-top: 15px;"></div>
+        </div>
+    </div>
+
+    <!-- Track Order Modal -->
+    <div id="track-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
+        <div style="background: #ffffff; color: #222; max-width: 500px; width: 100%; padding: 30px; border-radius: 16px; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.25); font-family: sans-serif;">
+            <button type="button" onclick="closeTrackModal()" style="position: absolute; top: 12px; right: 15px; border: none; background: none; font-size: 28px; cursor: pointer; color: #666;">&times;</button>
+            <h2 style="margin-top: 0; margin-bottom: 8px; font-size: 1.6rem; color: #111;">Track Your Order</h2>
+            <p style="color: #666; font-size: 0.95rem; margin-bottom: 22px;">Enter your Order ID and phone number to contact us about your order.</p>
+            <div style="margin-bottom: 15px;">
+                <label for="track-order-id" style="display: block; font-weight: 600; margin-bottom: 6px;">Order ID</label>
+                <input type="text" id="track-order-id" placeholder="e.g. ORD-123456" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; box-sizing: border-box;">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="track-phone" style="display: block; font-weight: 600; margin-bottom: 6px;">Phone Number</label>
+                <input type="tel" id="track-phone" placeholder="e.g. 018XXXXXXXX" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; box-sizing: border-box;">
+            </div>
+            <button type="button" onclick="sendTrackWhatsApp()" style="width: 100%; padding: 13px; border: none; border-radius: 8px; background: #25D366; color: white; font-size: 15px; font-weight: 700; cursor: pointer;">
+                <i class="fa-brands fa-whatsapp"></i> Track Order via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- AUTHENTICATION MODAL (Login / Register / Forgot Password) -->
+    <div class="modal-overlay" id="auth-overlay"></div>
+    <div class="auth-modal" id="auth-modal">
+        <button class="modal-close-btn" onclick="closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
+        
+        <!-- LOGIN VIEW -->
+        <div class="auth-box" id="auth-login-view">
+            <h2>Welcome Back</h2>
+            <p class="auth-sub">Log in to manage your orders and account settings.</p>
+            <form id="login-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="login-email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="login-password" placeholder="••••••••" required>
+                </div>
+                <div class="auth-forgot-link">
+                    <a href="javascript:void(0)" onclick="switchAuthView('forgot')">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="login-submit-btn">Login</button>
+            </form>
+            <div class="auth-switch">
+                Don't have an account? <a href="javascript:void(0)" onclick="switchAuthView('register')">Create Account</a>
+            </div>
+        </div>
+
+        <!-- REGISTER VIEW -->
+        <div class="auth-box hidden" id="auth-register-view">
+            <h2>Create Account</h2>
+            <p class="auth-sub">Join Aura Store to track orders easily.</p>
+            <form id="register-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="register-name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="register-email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password (Min 6 characters)</label>
+                    <input type="password" id="register-password" placeholder="••••••••" minlength="6" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="register-submit-btn">Create Account</button>
+            </form>
+            <div class="auth-switch">
+                Already have an account? <a href="javascript:void(0)" onclick="switchAuthView('login')">Login</a>
+            </div>
+        </div>
+
+        <!-- FORGOT PASSWORD VIEW -->
+        <div class="auth-box hidden" id="auth-forgot-view">
+            <h2>Reset Password</h2>
+            <p class="auth-sub">Enter your email and we'll send a password reset link.</p>
+            <form id="forgot-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="forgot-email" placeholder="your@email.com" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="forgot-submit-btn">Send Reset Link</button>
+            </form>
+            <div class="auth-switch">
+                Remember your password? <a href="javascript:void(0)" onclick="switchAuthView('login')">Back to Login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MY ACCOUNT & ORDERS MODAL -->
+    <div class="modal-overlay" id="account-overlay"></div>
+    <div class="account-modal" id="account-modal">
+        <div class="checkout-header">
+            <h2>My Account</h2>
+            <button class="modal-close-btn" onclick="closeAccountModal()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="account-body">
+            <div class="account-tabs">
+                <button class="tab-btn active" onclick="switchAccountTab('orders')"><i class="fa-solid fa-box"></i> My Orders</button>
+                <button class="tab-btn" onclick="switchAccountTab('profile')"><i class="fa-solid fa-user-gear"></i> Profile Settings</button>
+            </div>
+
+            <!-- Orders Tab -->
+            <div class="tab-content" id="tab-orders">
+                <div id="orders-list-container">
+                    <!-- Dynamic Orders Injected Here -->
+                </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div class="tab-content hidden" id="tab-profile">
+                <form id="profile-update-form">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="profile-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="profile-email" disabled style="background-color: #f3f4f6; opacity: 0.8;">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" style="margin-top: 15px;">Update Profile Name</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Cart Side Drawer -->
     <div class="modal-overlay" id="cart-overlay"></div>
@@ -486,16 +482,16 @@
                     <h3>1. Shipping Details</h3>
                     <div class="form-group">
                         <label for="cust-name">Full Name *</label>
-                        <input type="text" id="cust-name" placeholder="  " required>
+                        <input type="text" id="cust-name" placeholder="Full Name" required>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="cust-phone">Phone Number *</label>
-                            <input type="tel" id="cust-phone" placeholder="  " required>
+                            <input type="tel" id="cust-phone" placeholder="018XXXXXXXX" required>
                         </div>
                         <div class="form-group">
                             <label for="cust-email">Email Address *</label>
-                            <input type="email" id="cust-email" placeholder="   " required>
+                            <input type="email" id="cust-email" placeholder="email@example.com" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -505,7 +501,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="cust-city">City *</label>
-                            <input type="text" id="cust-city" placeholder="   " required>
+                            <input type="text" id="cust-city" placeholder="City" required>
                         </div>
                         <div class="form-group">
                             <label for="cust-area">Delivery Zone *</label>
@@ -522,44 +518,40 @@
                 </div>
 
                 <div class="form-section">
-    <h3>2. Payment Method</h3>
-    
-    <!-- Cash on Delivery -->
-    <div class="payment-option" style="margin-bottom: 12px;">
-        <input type="radio" id="cod" name="payment" value="COD" checked onclick="togglePaymentDetails('cod')">
-        <label for="cod">
-            <strong>Cash on Delivery (COD)</strong>
-            <small style="display:block; color:#666;">Pay with cash directly upon parcel arrival.</small>
-        </label>
-    </div>
+                    <h3>2. Payment Method</h3>
+                    
+                    <div class="payment-option" style="margin-bottom: 12px;">
+                        <input type="radio" id="cod" name="payment" value="COD" checked onclick="togglePaymentDetails('cod')">
+                        <label for="cod">
+                            <strong>Cash on Delivery (COD)</strong>
+                            <small style="display:block; color:#666;">Pay with cash directly upon parcel arrival.</small>
+                        </label>
+                    </div>
 
-    <!-- bKash Personal -->
-    <div class="payment-option" style="margin-bottom: 12px;">
-        <input type="radio" id="bkash" name="payment" value="bKash" onclick="togglePaymentDetails('bkash')">
-        <label for="bkash">
-            <strong>bKash (Personal)</strong>
-            <small style="display:block; color:#666;">Send Money to our personal bKash number.</small>
-        </label>
-    </div>
+                    <div class="payment-option" style="margin-bottom: 12px;">
+                        <input type="radio" id="bkash" name="payment" value="bKash" onclick="togglePaymentDetails('bkash')">
+                        <label for="bkash">
+                            <strong>bKash (Personal)</strong>
+                            <small style="display:block; color:#666;">Send Money to our personal bKash number.</small>
+                        </label>
+                    </div>
 
-    <!-- Dynamic bKash Info Box -->
-    <div id="bkash-info" style="display: none; background: #fff0f6; border: 1px solid #ffadd2; padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 0.9rem;">
-        <p style="margin: 0 0 6px; font-weight: bold; color: #d40064; font-size: 1rem;">bKash Personal Number: 01861403911</p>
-        <p style="margin: 0 0 10px; color: #444; line-height: 1.4;">
-            অনুগ্রহ করে আপনার বিকাশ অ্যাপ বা *247# থেকে **Send Money** অপশন ব্যবহার করে মোট টাকার পরিমাণ পাঠান। টাকা পাঠানোর পর নিচের ঘরগুলো পূরণ করুন:
-        </p>
-        <div style="margin-bottom: 8px;">
-            <label style="display:block; font-size: 0.85rem; font-weight: 600; color: #333; margin-bottom: 4px;">Your bKash Number (যে নম্বর থেকে টাকা পাঠিয়েছেন):</label>
-            <input type="tel" id="bkash-sender-num" placeholder="e.g. 017XXXXXXXX" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-        </div>
-        <div>
-            <label style="display:block; font-size: 0.85rem; font-weight: 600; color: #333; margin-bottom: 4px;">bKash Transaction ID (TrxID):</label>
-            <input type="text" id="bkash-trxid" placeholder="e.g. 9B7X8Y2Z" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-transform: uppercase;">
-        </div>
-    </div>
+                    <div id="bkash-info" style="display: none; background: #fff0f6; border: 1px solid #ffadd2; padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 0.9rem;">
+                        <p style="margin: 0 0 6px; font-weight: bold; color: #d40064; font-size: 1rem;">bKash Personal Number: 01861403911</p>
+                        <p style="margin: 0 0 10px; color: #444; line-height: 1.4;">
+                            অনুগ্রহ করে আপনার বিকাশ অ্যাপ বা *247# থেকে **Send Money** অপশন ব্যবহার করে মোট টাকার পরিমাণ পাঠান। টাকা পাঠানোর পর নিচের ঘরগুলো পূরণ করুন:
+                        </p>
+                        <div style="margin-bottom: 8px;">
+                            <label style="display:block; font-size: 0.85rem; font-weight: 600; color: #333; margin-bottom: 4px;">Your bKash Number:</label>
+                            <input type="tel" id="bkash-sender-num" placeholder="e.g. 017XXXXXXXX" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        </div>
+                        <div>
+                            <label style="display:block; font-size: 0.85rem; font-weight: 600; color: #333; margin-bottom: 4px;">bKash Transaction ID (TrxID):</label>
+                            <input type="text" id="bkash-trxid" placeholder="e.g. 9B7X8Y2Z" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-transform: uppercase;">
+                        </div>
+                    </div>
+                </div>
 
-   
-                
                 <div class="checkout-summary">
                     <h3>Order Summary</h3>
                     <div class="summary-line">
@@ -605,151 +597,140 @@
             <button class="btn btn-primary btn-full" id="back-to-shop-btn">Continue Shopping</button>
         </div>
     </div>
-<!-- Toast Notification -->
-<div class="toast" id="toast">
-    <i class="fa-solid fa-circle-info toast-icon" id="toast-icon"></i>
-    <span id="toast-message">Item added to cart!</span>
-</div>
-<!-- EmailJS -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-<script>
-    emailjs.init({
-        publicKey: "z_JJJpmBJ5bNZMeRA"
-    });
-</script>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-circle-info toast-icon" id="toast-icon"></i>
+        <span id="toast-message">Item added to cart!</span>
+    </div>
 
-<!-- Products Data Source (Must be loaded BEFORE script.js) -->
-<script src="products.js"></script>
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        emailjs.init({
+            publicKey: "z_JJJpmBJ5bNZMeRA"
+        });
+    </script>
 
-<!-- Your JavaScript -->
-<script src="script.js"></script>
-<script>
-    const policyDetails = {
-        shipping: {
-            title: "Shipping & Delivery Policy",
-            content: `
-                <p>At <strong>Aura Store</strong>, we aim to deliver your order as quickly and safely as possible across Bangladesh.</p>
-                <h4 style="margin: 12px 0 5px; color: #111;">1. Delivery Timeframes</h4>
-                <p>• <strong>Inside Dhaka:</strong> Delivered within 24 to 48 hours.</p>
-                <p>• <strong>Outside Dhaka:</strong> Delivered within 3 to 5 business days.</p>
-                <h4 style="margin: 12px 0 5px; color: #111;">2. Shipping Charges</h4>
-                <p>• Inside Dhaka: <strong>৳80</strong></p>
-                <p>• Outside Dhaka: <strong>৳150</strong> (Advance delivery fee required for outside Dhaka orders).</p>
-                <h4 style="margin: 12px 0 5px; color: #111;">3. Order Tracking</h4>
-                <p>Once your order is dispatched, you will receive a confirmation SMS with tracking details or courier information.</p>
-            `
-        },
-        returns: {
-            title: "Returns, Refunds & Exchanges",
-            content: `
-                <p>We want you to love what you ordered. If something isn't right, we are here to help!</p>
-                <h4 style="margin: 12px 0 5px; color: #111;">1. Return Conditions</h4>
-                <p>• Returns/Exchanges must be requested within <strong>7 days</strong> of delivery.</p>
-                <p>• The item must be unused, unwashed, with original tags and packaging intact.</p>
-                <p>• You must inspect the parcel in front of the delivery person. If damaged or mismatched, please return it immediately to the delivery agent.</p>
-                <h4 style="margin: 12px 0 5px; color: #111;">2. Non-Returnable Items</h4>
-                <p>Customized products, clearance sale items, and personal care products are non-returnable.</p>
-                <h4 style="margin: 12px 0 5px; color: #111;">3. Refunds</h4>
-                <p>Approved refunds will be processed via bKash/Nagad or Bank transfer within 5-7 business days after product inspection.</p>
-            `
-        },
-        terms: {
-            title: "Terms of Service",
-            content: `
-                <p>Welcome to Aura Store. By accessing or purchasing from our website, you agree to the following terms:</p>
-                <h4 style="margin: 12px 0 5px; color: #111;">1. General Conditions</h4>
-                <p>• We reserve the right to refuse service or cancel orders at our discretion due to stock issues or suspected fraud.</p>
-                <p>• Product colors may vary slightly due to photographic lighting or screen settings.</p>
-                <h4 style="margin: 12px 0 5px; color: #111;">2. Pricing & Payments</h4>
-                <p>• All prices are listed in BDT (Bangladeshi Taka).</p>
-                <p>• Prices are subject to change without prior notice.</p>
-                <h4 style="margin: 12px 0 5px; color: #111;">3. Intellectual Property</h4>
-                <p>All content, images, and branding on this website are the intellectual property of Aura Store.</p>
-            `
-        },
-        privacy: {
-            title: "Privacy Policy",
-            content: `
-                <p>Aura Store respects your personal privacy. We are committed to protecting the information you share with us.</p>
-                <h4 style="margin: 12px 0 5px; color: #111;">1. Information We Collect</h4>
-                <p>When you place an order, we collect your name, phone number, shipping address, and email address solely to process your order.</p>
-                <h4 style="margin: 12px 0 5px; color: #111;">2. Data Security</h4>
-                <p>We do not store your payment or card details. All online transactions are processed through secure payment gateways.</p>
-                <h4 style="margin: 12px 0 5px; color: #111;">3. Third-Party Sharing</h4>
-                <p>Your details are strictly shared with trusted courier partners (e.g., Steadfast, Pathao) solely for order delivery purposes. We never sell your data to third parties.</p>
-            `
-        }
-    };
-/* ==========================================================================
-       MODAL SYSTEM (POLICY & TRACK ORDER)
-       ========================================================================== */
-    function openPolicyModal(type) {
-        if (policyDetails[type]) {
-            document.getElementById('modal-title').innerText = policyDetails[type].title;
-            document.getElementById('modal-body').innerHTML = policyDetails[type].content;
-            document.getElementById('policy-modal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-    }
+    <!-- Products Data Source -->
+    <script src="products.js"></script>
 
-    function closePolicyModal() {
-        document.getElementById('policy-modal').style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
+    <!-- Firebase SDKs (Modular Version) -->
+    <script type="module" src="script.js"></script>
 
-    function openTrackModal() {
-        const modal = document.getElementById('track-modal');
-        if (modal) {
-            modal.style.display = 'flex';
-        }
-        // মোবাইল ড্রয়ার মেনু খোলা থাকলে বন্ধ হবে
-        const mobileOverlay = document.getElementById('mobile-nav-overlay');
-        const mobileDrawer = document.getElementById('mobile-nav-drawer');
-        if (mobileOverlay) mobileOverlay.classList.remove('active');
-        if (mobileDrawer) mobileDrawer.classList.remove('active');
-    }
+    <script>
+        const policyDetails = {
+            shipping: {
+                title: "Shipping & Delivery Policy",
+                content: `
+                    <p>At <strong>Aura Store</strong>, we aim to deliver your order as quickly and safely as possible across Bangladesh.</p>
+                    <h4 style="margin: 12px 0 5px; color: #111;">1. Delivery Timeframes</h4>
+                    <p>• <strong>Inside Dhaka:</strong> Delivered within 24 to 48 hours.</p>
+                    <p>• <strong>Outside Dhaka:</strong> Delivered within 3 to 5 business days.</p>
+                    <h4 style="margin: 12px 0 5px; color: #111;">2. Shipping Charges</h4>
+                    <p>• Inside Dhaka: <strong>৳80</strong></p>
+                    <p>• Outside Dhaka: <strong>৳150</strong> (Advance delivery fee required for outside Dhaka orders).</p>
+                    <h4 style="margin: 12px 0 5px; color: #111;">3. Order Tracking</h4>
+                    <p>Once your order is dispatched, you will receive a confirmation SMS with tracking details or courier information.</p>
+                `
+            },
+            returns: {
+                title: "Returns, Refunds & Exchanges",
+                content: `
+                    <p>We want you to love what you ordered. If something isn't right, we are here to help!</p>
+                    <h4 style="margin: 12px 0 5px; color: #111;">1. Return Conditions</h4>
+                    <p>• Returns/Exchanges must be requested within <strong>7 days</strong> of delivery.</p>
+                    <p>• The item must be unused, unwashed, with original tags and packaging intact.</p>
+                    <p>• You must inspect the parcel in front of the delivery person. If damaged or mismatched, please return it immediately to the delivery agent.</p>
+                    <h4 style="margin: 12px 0 5px; color: #111;">2. Non-Returnable Items</h4>
+                    <p>Customized products, clearance sale items, and personal care products are non-returnable.</p>
+                    <h4 style="margin: 12px 0 5px; color: #111;">3. Refunds</h4>
+                    <p>Approved refunds will be processed via bKash/Nagad or Bank transfer within 5-7 business days after product inspection.</p>
+                `
+            },
+            terms: {
+                title: "Terms of Service",
+                content: `
+                    <p>Welcome to Aura Store. By accessing or purchasing from our website, you agree to the following terms:</p>
+                    <h4 style="margin: 12px 0 5px; color: #111;">1. General Conditions</h4>
+                    <p>• We reserve the right to refuse service or cancel orders at our discretion due to stock issues or suspected fraud.</p>
+                    <p>• Product colors may vary slightly due to photographic lighting or screen settings.</p>
+                    <h4 style="margin: 12px 0 5px; color: #111;">2. Pricing & Payments</h4>
+                    <p>• All prices are listed in BDT (Bangladeshi Taka).</p>
+                    <p>• Prices are subject to change without prior notice.</p>
+                    <h4 style="margin: 12px 0 5px; color: #111;">3. Intellectual Property</h4>
+                    <p>All content, images, and branding on this website are the intellectual property of Aura Store.</p>
+                `
+            },
+            privacy: {
+                title: "Privacy Policy",
+                content: `
+                    <p>Aura Store respects your personal privacy. We are committed to protecting the information you share with us.</p>
+                    <h4 style="margin: 12px 0 5px; color: #111;">1. Information We Collect</h4>
+                    <p>When you place an order, we collect your name, phone number, shipping address, and email address solely to process your order.</p>
+                    <h4 style="margin: 12px 0 5px; color: #111;">2. Data Security</h4>
+                    <p>We do not store your payment or card details. All online transactions are processed through secure payment gateways.</p>
+                    <h4 style="margin: 12px 0 5px; color: #111;">3. Third-Party Sharing</h4>
+                    <p>Your details are strictly shared with trusted courier partners solely for order delivery purposes. We never sell your data to third parties.</p>
+                `
+            }
+        };
 
-    function closeTrackModal() {
-        const modal = document.getElementById('track-modal');
-        if (modal) {
-            modal.style.display = 'none';
-        }
-    }
-
-    function sendTrackWhatsApp() {
-        const orderId = document.getElementById('track-order-id').value.trim();
-        const phone = document.getElementById('track-phone').value.trim();
-
-        if (!orderId || !phone) {
-            alert("Please enter both Order ID and Phone Number.");
-            return;
+        function openPolicyModal(type) {
+            if (policyDetails[type]) {
+                document.getElementById('modal-title').innerText = policyDetails[type].title;
+                document.getElementById('modal-body').innerHTML = policyDetails[type].content;
+                document.getElementById('policy-modal').style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
         }
 
-        let message = `*ORDER TRACKING REQUEST*\n`;
-        message += `------------------------------\n`;
-        message += `*Order ID:* ${orderId}\n`;
-        message += `*Customer Phone:* ${phone}\n\n`;
-        message += `Hello, I want to track my order status. Please update me!`;
-
-        const encodedMessage = encodeURIComponent(message);
-        const whatsappURL = `https://wa.me/8801619427099?text=${encodedMessage}`;
-        
-        window.open(whatsappURL, '_blank');
-        closeTrackModal();
-    }
-
-    window.onclick = function(event) {
-        const policyModal = document.getElementById('policy-modal');
-        const trackModal = document.getElementById('track-modal');
-        if (event.target === policyModal) {
-            closePolicyModal();
+        function closePolicyModal() {
+            document.getElementById('policy-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
-        if (event.target === trackModal) {
+
+        function openTrackModal() {
+            const modal = document.getElementById('track-modal');
+            if (modal) modal.style.display = 'flex';
+            const mobileOverlay = document.getElementById('mobile-nav-overlay');
+            const mobileDrawer = document.getElementById('mobile-nav-drawer');
+            if (mobileOverlay) mobileOverlay.classList.remove('active');
+            if (mobileDrawer) mobileDrawer.classList.remove('active');
+        }
+
+        function closeTrackModal() {
+            const modal = document.getElementById('track-modal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function sendTrackWhatsApp() {
+            const orderId = document.getElementById('track-order-id').value.trim();
+            const phone = document.getElementById('track-phone').value.trim();
+
+            if (!orderId || !phone) {
+                alert("Please enter both Order ID and Phone Number.");
+                return;
+            }
+
+            let message = `*ORDER TRACKING REQUEST*\n`;
+            message += `------------------------------\n`;
+            message += `*Order ID:* ${orderId}\n`;
+            message += `*Customer Phone:* ${phone}\n\n`;
+            message += `Hello, I want to track my order status. Please update me!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/8801861403911?text=${encodedMessage}`;
+            window.open(whatsappURL, '_blank');
             closeTrackModal();
         }
-    }
-</script>
 
+        window.onclick = function(event) {
+            const policyModal = document.getElementById('policy-modal');
+            const trackModal = document.getElementById('track-modal');
+            if (event.target === policyModal) closePolicyModal();
+            if (event.target === trackModal) closeTrackModal();
+        }
+    </script>
 </body>
 </html>
