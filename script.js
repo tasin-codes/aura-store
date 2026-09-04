@@ -115,9 +115,10 @@ window.currentSlide = function(index) {
    ========================================================================== */
 function renderCategories() {
     const select = document.getElementById('category-select');
-    if (!select || typeof productsData === 'undefined') return;
+    const products = typeof productsData !== 'undefined' ? productsData : window.productsData;
+    if (!select || !products) return;
 
-    const categories = ['all', ...new Set(productsData.map(p => p.category))];
+    const categories = ['all', ...new Set(products.map(p => p.category))];
     select.innerHTML = categories.map(cat => `
         <option value="${cat}">${cat === 'all' ? 'All Categories' : cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
     `).join('');
@@ -127,7 +128,7 @@ function renderProducts() {
     const grid = document.getElementById('products-grid');
     const emptyState = document.getElementById('empty-products');
     
-    // Fallback check if productsData is attached to window
+    // Safely check global products variable
     const products = typeof productsData !== 'undefined' ? productsData : window.productsData;
     if (!grid || !products) return;
 
