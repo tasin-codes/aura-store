@@ -2258,3 +2258,162 @@ div.product-card .card-actions {
         font-size: 13px;
     }
 }
+/* ==========================================================================
+   AUTHENTICATION & MY ACCOUNT MODALS CSS
+   ========================================================================== */
+.user-dropdown-menu {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 200px;
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    display: none;
+    flex-direction: column;
+    z-index: 150;
+    overflow: hidden;
+}
+
+.user-dropdown-menu.active {
+    display: flex;
+}
+
+.user-dropdown-menu a, .user-dropdown-menu button {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    transition: var(--transition);
+}
+
+.user-dropdown-menu a:hover, .user-dropdown-menu button:hover {
+    background-color: var(--bg-light);
+    color: var(--accent-color);
+}
+
+.auth-modal, .account-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+    width: 90%;
+    max-width: 450px;
+    background-color: #ffffff;
+    border-radius: var(--radius-lg);
+    z-index: 400;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    padding: 2rem;
+}
+
+.account-modal {
+    max-width: 700px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.auth-modal.active, .account-modal.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%);
+}
+
+.auth-box h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+}
+
+.auth-sub {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.auth-forgot-link {
+    text-align: right;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+}
+
+.auth-forgot-link a {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.auth-switch {
+    margin-top: 1.25rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.auth-switch a {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+/* Account Modal Styling */
+.account-body {
+    padding: 1.5rem;
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+.account-tabs {
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    border-bottom: 2px solid transparent;
+    transition: var(--transition);
+}
+
+.tab-btn.active {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+}
+
+.order-card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #ffffff;
+}
+
+.order-header-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+}
+
+.order-badge {
+    padding: 0.2rem 0.6rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.order-badge.pending { background-color: #fef3c7; color: #d97706; }
+.order-badge.completed { background-color: #d1fae5; color: #059669; }
