@@ -1,4 +1,4 @@
-const products = [
+window.productsData = [
     {
         "id": 1,
         "name": "Minimalist Leather Backpack",
@@ -146,4 +146,3 @@ const products = [
         "description": "High precision RGB gaming mouse"
     }
 ];
-       
