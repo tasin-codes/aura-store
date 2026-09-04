@@ -126,13 +126,16 @@ function renderCategories() {
 function renderProducts() {
     const grid = document.getElementById('products-grid');
     const emptyState = document.getElementById('empty-products');
-    if (!grid || typeof productsData === 'undefined') return;
+    
+    // Fallback check if productsData is attached to window
+    const products = typeof productsData !== 'undefined' ? productsData : window.productsData;
+    if (!grid || !products) return;
 
     const searchVal = document.getElementById('search-input')?.value.toLowerCase() || '';
     const categoryVal = document.getElementById('category-select')?.value || 'all';
     const sortVal = document.getElementById('sort-select')?.value || 'default';
 
-    let filtered = productsData.filter(p => {
+    let filtered = products.filter(p => {
         const matchesSearch = p.title.toLowerCase().includes(searchVal) || (p.tags && p.tags.some(t => t.toLowerCase().includes(searchVal)));
         const matchesCat = categoryVal === 'all' || p.category === categoryVal;
         return matchesSearch && matchesCat;
