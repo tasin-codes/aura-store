@@ -115,8 +115,8 @@ window.currentSlide = function(index) {
    ========================================================================== */
 function renderCategories() {
     const select = document.getElementById('category-select');
-    const products = typeof productsData !== 'undefined' ? productsData : window.productsData;
-    if (!select || !products) return;
+    const products = window.productsData || [];
+    if (!select || !products.length) return;
 
     const categories = ['all', ...new Set(products.map(p => p.category))];
     select.innerHTML = categories.map(cat => `
@@ -128,39 +128,40 @@ function renderProducts() {
     const grid = document.getElementById('products-grid');
     const emptyState = document.getElementById('empty-products');
     
-    // Safely check global products variable
-    const products = typeof productsData !== 'undefined' ? productsData : window.productsData;
-    if (!grid || !products) return;
+    const products = window.productsData || [];
+    if (!grid) return;
 
     const searchVal = document.getElementById('search-input')?.value.toLowerCase() || '';
     const categoryVal = document.getElementById('category-select')?.value || 'all';
     const sortVal = document.getElementById('sort-select')?.value || 'default';
 
     let filtered = products.filter(p => {
-        const matchesSearch = p.title.toLowerCase().includes(searchVal) || (p.tags && p.tags.some(t => t.toLowerCase().includes(searchVal)));
+        const title = (p.name || p.title || '').toLowerCase();
+        const matchesSearch = title.includes(searchVal) || (p.tags && p.tags.some(t => t.toLowerCase().includes(searchVal)));
         const matchesCat = categoryVal === 'all' || p.category === categoryVal;
         return matchesSearch && matchesCat;
     });
 
     if (sortVal === 'price-low') filtered.sort((a, b) => a.price - b.price);
     if (sortVal === 'price-high') filtered.sort((a, b) => b.price - a.price);
-    if (sortVal === 'name-asc') filtered.sort((a, b) => a.title.localeCompare(b.title));
+    if (sortVal === 'name-asc') filtered.sort((a, b) => (a.name || a.title).localeCompare(b.name || b.title));
 
     if (filtered.length === 0) {
         grid.innerHTML = '';
-        emptyState.classList.remove('hidden');
+        if (emptyState) emptyState.classList.remove('hidden');
         return;
     }
 
-    emptyState.classList.add('hidden');
+    if (emptyState) emptyState.classList.add('hidden');
     grid.innerHTML = filtered.map(p => {
-        const isWish = wishlist.includes(p.id);
-        const isSoldOut = p.inStock === false;
+        const isWish = typeof wishlist !== 'undefined' && wishlist.includes(p.id);
+        const isSoldOut = p.stock_status === 'out_of_stock' || p.inStock === false;
+        const productName = p.name || p.title;
 
         return `
             <div class="product-card">
                 <div class="card-image-wrap" onclick="openProductModal(${p.id})">
-                    <img src="${p.image}" alt="${p.title}">
+                    <img src="${p.image}" alt="${productName}">
                     ${p.oldPrice ? `<span class="badge-discount">-${Math.round(((p.oldPrice - p.price)/p.oldPrice)*100)}%</span>` : ''}
                     <button class="btn-wishlist ${isWish ? 'active' : ''}" onclick="event.stopPropagation(); toggleWishlist(${p.id})">
                         <i class="fa-${isWish ? 'solid' : 'regular'} fa-heart"></i>
@@ -168,16 +169,16 @@ function renderProducts() {
                 </div>
                 <div class="card-content">
                     <span class="product-category">${p.category}</span>
-                    <h3 class="product-title" onclick="openProductModal(${p.id})">${p.title}</h3>
+                    <h3 class="product-title" onclick="openProductModal(${p.id})">${productName}</h3>
                     <div class="rating-stars">
                         <i class="fa-solid fa-star"></i>
                         <span>${p.rating || 5.0}</span>
-                        <span class="rating-count">(${p.reviews || 10})</span>
+                        <span class="rating-count">(${p.ratingCount || p.reviews || 0})</span>
                     </div>
                     <p class="product-description">${p.description}</p>
                     <div class="card-footer-price">
-                        <span class="current-price">${BUSINESS_CONFIG.currency}${p.price}</span>
-                        ${p.oldPrice ? `<span class="old-price">${BUSINESS_CONFIG.currency}${p.oldPrice}</span>` : ''}
+                        <span class="current-price">${typeof BUSINESS_CONFIG !== 'undefined' ? BUSINESS_CONFIG.currency : '৳'}${p.price}</span>
+                        ${p.oldPrice ? `<span class="old-price">${typeof BUSINESS_CONFIG !== 'undefined' ? BUSINESS_CONFIG.currency : '৳'}${p.oldPrice}</span>` : ''}
                     </div>
                     <div class="card-actions-grid">
                         <button class="btn btn-secondary" onclick="openProductModal(${p.id})">Details</button>
